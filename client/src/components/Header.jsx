@@ -1,10 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header(props) {
   return (
-    <>
-      <img></img>
-      <Navlink>A</Navlink>
-    </>
+    <div className="header">
+      <h2>{props.text}</h2>
+      Empowering youth entrepreneurs.
+      <br />
+      And the future of Canada.
+      <div>
+        <Link to="/shop">
+          <button>Shop</button>
+        </Link>
+        <button>About</button>
+      </div>
+    </div>
   );
 }
