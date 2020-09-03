@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <>
       <img></img>
-      <Navlink></Navlink>
+      <Navlink>A</Navlink>
     </>
   );
 }
