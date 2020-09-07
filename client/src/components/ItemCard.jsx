@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function ItemCard() {
+export default function ItemCard(props) {
   return (
-    <div>
-      <img src="" alt="" />
+    <Link to={`/shop/${props.id}`}>
+      <img src={props.image} alt="" />
       <h3>{props.title}</h3>
       <p>{props.company}</p>
       <h4>{props.description}</h4>
       <p>{props.price}</p>
-    </div>
+    </Link>
   );
 }

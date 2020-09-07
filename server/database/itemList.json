@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
+    "title": "title1",
+    "company": "company1",
+    "description": "description1",
+    "price": "price1"
+  },
+  {
+    "id": 1,
+    "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
+    "title": "title2",
+    "company": "company2",
+    "description": "description2",
+    "price": "price2"
+  }
+]

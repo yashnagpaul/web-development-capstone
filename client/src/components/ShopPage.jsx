@@ -1,14 +1,36 @@
 import React from "react";
+import axios from "axios";
+
+import ItemCard from "./ItemCard";
 
 class ShopPage extends React.Component {
+  state = {
+    items: [],
+  };
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/api/items")
+      .then((response) => this.setState({ items: response.data }));
+  }
+
   render() {
-    return (
-      <h1>Hello World!</h1>
-      // axios request from the server
-      // GET the file that contains the products
-      // map through the result and create
-      // <ItemCard name={obj.name}>
-      // for each object in the result
+    console.log(this.state);
+    return this.state.items ? (
+      <>
+        {this.state.items.map((item) => (
+          <ItemCard
+            id={item.id}
+            image={item.image}
+            title={item.title}
+            company={item.company}
+            description={item.description}
+            price={item.price}
+          />
+        ))}
+      </>
+    ) : (
+      console.log("loading content")
     );
   }
 }
