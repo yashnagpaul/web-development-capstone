@@ -1,18 +1,28 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+import cartIcon from "../assets/icons/supermarket.svg";
 
 export default function Header(props) {
   return (
     <div className="header">
-      <h2>{props.text}</h2>
-      Empowering youth entrepreneurs.
-      <br />
-      And the future of Canada.
+      <Link to="/">
+        <h2>Shoppee Shoppee</h2>
+      </Link>
+
       <div>
-        <Link to="/shop">
-          <button>Shop</button>
-        </Link>
-        <button>About</button>
+        <NavLink to="/shop" className="header__link">
+          Shop
+        </NavLink>
+        <NavLink to="/login" className="header__link">
+          Admin
+        </NavLink>
+        <NavLink to="/about" className="header__link">
+          About
+        </NavLink>
+        <NavLink to="/cart">
+          <img src={cartIcon} alt="cart" className="header__cart"></img>
+        </NavLink>
       </div>
     </div>
   );

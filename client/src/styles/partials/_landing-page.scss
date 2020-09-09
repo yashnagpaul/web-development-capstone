@@ -1,0 +1,12 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  button {
+    width: 120px;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+}

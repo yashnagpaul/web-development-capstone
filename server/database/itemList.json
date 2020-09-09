@@ -2,17 +2,17 @@
   {
     "id": 0,
     "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
-    "title": "title1",
-    "company": "company1",
-    "description": "description1",
-    "price": "price1"
+    "title": "title0",
+    "company": "company0",
+    "description": "description0",
+    "price": 8.99
   },
   {
     "id": 1,
     "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
-    "title": "title2",
-    "company": "company2",
-    "description": "description2",
-    "price": "price2"
+    "title": "title1",
+    "company": "company1",
+    "description": "description1",
+    "price": 10.5
   }
 ]

@@ -26,6 +26,7 @@ class ShopPage extends React.Component {
             company={item.company}
             description={item.description}
             price={item.price}
+            key={item.id}
           />
         ))}
       </>

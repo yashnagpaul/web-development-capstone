@@ -1,21 +1,8 @@
-body {
-  box-sizing: border-box;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
+// utilities
+@import "./styles/partials/default-resets";
+@import "./styles/partials/mixins-variables";
 
-* {
-  box-sizing: inherit;
-  margin: inherit;
-}
-
-.header {
-  width: 100vw;
-  background-color: #00704a;
-  color: #f3f4f4;
-}
-
-//item card
-img {
-  height: 50px;
-}
+// components
+@import "./styles/partials/item-card";
+@import "./styles/partials/header";
+@import "./styles/partials/landing-page";
