@@ -1,4 +1,4 @@
-.admin-page {
+.admin-sign-in {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,4 +7,27 @@
   //   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   //   width: 110px;
+}
+
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  align-items: center;
+  @include tablet {
+    align-items: initial;
+
+    padding-top: 20px;
+    padding-left: 30px;
+  }
+  &__upload-form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__textarea {
+    width: 200px;
+  }
+  &__submit-button {
+    width: 200px;
+  }
 }

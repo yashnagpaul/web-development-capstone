@@ -14,7 +14,7 @@ export default function Header(props) {
         <NavLink to="/shop" className="header__link">
           Shop
         </NavLink>
-        <NavLink to="/login" className="header__link">
+        <NavLink to="/admin" className="header__link">
           Admin
         </NavLink>
         <NavLink to="/about" className="header__link">

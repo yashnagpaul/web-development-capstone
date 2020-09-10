@@ -38,10 +38,12 @@ a::hover {
   color: white;
 }
 
+textarea,
 input[type="username"],
 [type="password"],
 [type="email"],
 [type="text"] {
+  font-family: Arial, Helvetica, sans-serif;
   min-height: 34px;
   width: 200px;
   padding: 10px;

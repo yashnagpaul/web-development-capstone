@@ -10,7 +10,7 @@ import AboutPage from "./components/AboutPage";
 import AdminSignIn from "./components/AdminSignIn";
 import LandingPage from "./components/LandingPage";
 import Checkout from "./components/Checkout";
-import Footer from "./components/Footer";
+import AdminPage from "./components/AdminPage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,8 +24,9 @@ ReactDOM.render(
         <Route path="/cart" component={Cart}></Route>
         <Route path="/login" component={AdminSignIn}></Route>
         <Route path="/checkout" component={Checkout}></Route>
+        <Route path="/admin" component={AdminPage}></Route>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

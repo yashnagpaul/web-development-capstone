@@ -12,7 +12,7 @@ const listOfItems = fs.readFileSync(
   path.join(__dirname, "./database/itemList.json")
 );
 
-// const PORT = process.env.SERVER_PORT;
+// const PORT = process.env.SERVER_PORT; ==============================
 const PORT = 5000;
 require("dotenv").config();
 
@@ -26,6 +26,10 @@ app.get("/api", (req, res) =>
 );
 
 app.get("/api/items", (req, res) => res.json(JSON.parse(listOfItems)));
+
+app.post("/api/items", (req, res) => {
+  const newItem = req.body;
+});
 
 // START SERVER
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
