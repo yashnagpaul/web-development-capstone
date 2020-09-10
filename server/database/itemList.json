@@ -1,18 +1,26 @@
 [
   {
     "id": 0,
-    "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
-    "title": "title0",
-    "company": "company0",
-    "description": "description0",
+    "image": "https://skincarehero.com/wp-content/uploads/2020/03/best-bha-products.png",
+    "title": "Bag Light",
+    "company": "Spotlight",
+    "description": "A light that fits into your bag, a solution to find things in the dark.",
     "price": 8.99
   },
   {
     "id": 1,
-    "image": "https://designshack.net/wp-content/uploads/placeholder-image.png",
+    "image": "https://skincarehero.com/wp-content/uploads/2020/03/best-bha-products.png",
     "title": "title1",
     "company": "company1",
-    "description": "description1",
+    "description": "A light that fits into your bag, a solution to find things in the dark.",
     "price": 10.5
+  },
+  {
+    "id": 2,
+    "image": "https://skincarehero.com/wp-content/uploads/2020/03/best-bha-products.png",
+    "title": "title2",
+    "company": "company2",
+    "description": "description2",
+    "price": 5
   }
 ]

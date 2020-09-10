@@ -9,8 +9,12 @@ class ItemCard extends React.Component {
 
   addToCartHandler = () => {
     const existingCartItems = localStorage.getItem("cartItems");
-    console.log(existingCartItems);
-    sessionStorage.setItem("cartItems", JSON.stringify(this.state.item));
+    let newCartItems = [];
+    existingCartItems
+      ? newCartItems.push(...JSON.parse(existingCartItems))
+      : console.log("no items in cart");
+    newCartItems.push(this.state.item);
+    localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     console.log("working");
   };
 
@@ -28,16 +32,18 @@ class ItemCard extends React.Component {
   render() {
     console.log(this.state.item);
     return this.state.item ? (
-      <>
-        <img src={this.state.item.image} alt="" />
-        <h3>{this.state.item.title}</h3>
-        <p>{this.state.item.company}</p>
-        <h4>{this.state.item.description}</h4>
-        <p>{this.state.item.price}</p>
-        <button onClick={this.addToCartHandler} type="button">
-          ADD TO CART
-        </button>
-      </>
+      <div className="item-page">
+        <div className="item-card">
+          <img src={this.state.item.image} alt="" />
+          <h3>{this.state.item.title}</h3>
+          <p>{this.state.item.company}</p>
+          <h4>{this.state.item.description}</h4>
+          <p>{this.state.item.price}</p>
+          <button onClick={this.addToCartHandler} type="button">
+            ADD TO CART
+          </button>
+        </div>
+      </div>
     ) : (
       console.log("loading")
     );

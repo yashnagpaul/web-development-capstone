@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function LandingPage() {
+  localStorage.getItem("cartItems")
+    ? console.log("cartItemsExists")
+    : localStorage.setItem("cartItems", []);
+
+  console.log(localStorage.getItem("cartItems"));
+
   return (
     <div className="landing-page">
       <h3>

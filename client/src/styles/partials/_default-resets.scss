@@ -2,7 +2,8 @@ body {
   box-sizing: border-box;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(238, 39, 97, 0.03);
+  color: rgba(40, 37, 98, 0.88);
 }
 
 * {
@@ -21,4 +22,29 @@ img {
 
 .active {
   border-bottom: rgba(0, 0, 0, 0.8);
+}
+
+button {
+  background-color: rgb(238, 39, 97);
+  color: white;
+  min-height: 34px;
+  min-width: 100px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+a::hover {
+  color: white;
+}
+
+input[type="username"],
+[type="password"],
+[type="email"],
+[type="text"] {
+  min-height: 34px;
+  width: 200px;
+  padding: 10px;
+  border: 0.1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }

@@ -1,0 +1,8 @@
+.item-page {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  @include tablet {
+    padding-top: 100px;
+  }
+}

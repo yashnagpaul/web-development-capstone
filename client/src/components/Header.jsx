@@ -7,7 +7,7 @@ export default function Header(props) {
   return (
     <div className="header">
       <Link to="/">
-        <h2>Shoppee Shoppee</h2>
+        <h1>Shoppee Shoppee</h1>
       </Link>
 
       <div>

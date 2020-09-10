@@ -2,7 +2,7 @@ import React from "react";
 
 function AdminSignIn() {
   return (
-    <form>
+    <form className="admin-page">
       <input type="username" placeholder="username"></input>
       <input type="password" placeholder="password"></input>
       <button type="submit">LOG IN</button>

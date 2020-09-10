@@ -15,9 +15,8 @@ class ShopPage extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return this.state.items ? (
-      <>
+      <div className="shop">
         {this.state.items.map((item) => (
           <ItemCard
             id={item.id}
@@ -29,7 +28,7 @@ class ShopPage extends React.Component {
             key={item.id}
           />
         ))}
-      </>
+      </div>
     ) : (
       console.log("loading content")
     );

@@ -1,0 +1,16 @@
+.about-page {
+  width: 300px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  p {
+    text-align: justify;
+  }
+
+  @include tablet {
+    width: 700px;
+  }
+}
