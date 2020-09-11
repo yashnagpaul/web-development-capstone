@@ -7,7 +7,6 @@ import ShopPage from "./components/ShopPage";
 import ItemPage from "./components/ItemPage";
 import Cart from "./components/Cart";
 import AboutPage from "./components/AboutPage";
-import AdminSignIn from "./components/AdminSignIn";
 import LandingPage from "./components/LandingPage";
 import Checkout from "./components/Checkout";
 import AdminPage from "./components/AdminPage";
@@ -22,7 +21,6 @@ ReactDOM.render(
         <Route path="/shop" component={ShopPage} exact></Route>
         <Route path="/shop/:id" component={ItemPage}></Route>
         <Route path="/cart" component={Cart}></Route>
-        <Route path="/login" component={AdminSignIn}></Route>
         <Route path="/checkout" component={Checkout}></Route>
         <Route path="/admin" component={AdminPage}></Route>
       </Switch>

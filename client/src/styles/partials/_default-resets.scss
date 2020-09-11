@@ -32,6 +32,13 @@ button {
   padding: 10px;
   border: none;
   border-radius: 4px;
+  &:hover {
+    background-color: rgb(198, 39, 97);
+    cursor: pointer;
+  }
+  &:active {
+    outline-color: transparent;
+  }
 }
 
 a::hover {
@@ -42,7 +49,8 @@ textarea,
 input[type="username"],
 [type="password"],
 [type="email"],
-[type="text"] {
+[type="text"],
+[type="number"] {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 34px;
   width: 200px;

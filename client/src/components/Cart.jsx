@@ -13,16 +13,15 @@ class Cart extends React.Component {
   }
   //on click -> look at the id and filter the array in localstorage where item.id !== button.id
   // then localStorage.setItem ('cartItem', the filtered Array)
-  deleteHandler = (e) => {
-    const btnID = this.deleteBtn.current.id;
-    console.log(btnID);
+  deleteHandler = (e, id) => {
+    console.log(id);
     const oldItems = JSON.parse(localStorage.getItem("cartItems"));
-    const newItems = oldItems.filter((item) => item.id !== btnID);
+    const newItems = oldItems.filter((item) => item.id !== id);
     localStorage.setItem("cartItems", JSON.stringify(newItems));
   };
 
   render() {
-    return cartItems ? (
+    return cartItems.length > 0 ? (
       <section className="cart">
         {cartItems.map((item) => (
           <div>
@@ -36,8 +35,7 @@ class Cart extends React.Component {
               price={item.price}
             />
             <button
-              onClick={this.deleteHandler}
-              id={item.id}
+              onClick={(e) => this.deleteHandler(e, item.id)}
               className="cart__delete"
               ref={this.deleteBtn}
             >
@@ -50,9 +48,7 @@ class Cart extends React.Component {
         </Link>
       </section>
     ) : (
-      <div className="cart__error-message">
-        Please add something to your cart!
-      </div>
+      <div className="cart__error-message">Your cart is empty!</div>
     );
   }
 }

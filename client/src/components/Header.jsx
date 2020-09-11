@@ -7,7 +7,9 @@ export default function Header(props) {
   return (
     <div className="header">
       <Link to="/">
-        <h1>Shoppee Shoppee</h1>
+        <h1>
+          🍒 <i> Le marché</i>
+        </h1>
       </Link>
 
       <div>
@@ -22,6 +24,9 @@ export default function Header(props) {
         </NavLink>
         <NavLink to="/cart">
           <img src={cartIcon} alt="cart" className="header__cart"></img>
+          {JSON.parse(localStorage.getItem("cartItems")).length > 0
+            ? JSON.parse(localStorage.getItem("cartItems")).length
+            : ""}
         </NavLink>
       </div>
     </div>

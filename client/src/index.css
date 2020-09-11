@@ -36,6 +36,15 @@ button {
   border-radius: 4px;
 }
 
+button:hover {
+  background-color: #c62761;
+  cursor: pointer;
+}
+
+button:active {
+  outline-color: transparent;
+}
+
 a::hover {
   color: white;
 }
@@ -44,7 +53,8 @@ textarea,
 input[type="username"],
 [type="password"],
 [type="email"],
-[type="text"] {
+[type="text"],
+[type="number"] {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 34px;
   width: 200px;
@@ -85,7 +95,7 @@ input[type="username"],
 
 .header {
   width: 100vw;
-  height: 100px;
+  height: 120px;
   background-color: #fff200;
   color: #282562;
   display: -webkit-box;
@@ -95,14 +105,12 @@ input[type="username"],
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 10px 30px 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -114,7 +122,12 @@ input[type="username"],
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    height: 100px;
   }
+}
+
+.header h1 {
+  text-align: center;
 }
 
 .header__link {
@@ -122,9 +135,17 @@ input[type="username"],
   margin-right: 10px;
 }
 
+.header__link:hover {
+  color: #ee2761;
+}
+
 .header__cart {
   height: 20px;
   margin-left: 20px;
+}
+
+.active {
+  color: #ee2761;
 }
 
 .footer {
@@ -151,13 +172,72 @@ input[type="username"],
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 50px;
+  background-image: url("https://2n15723t7tby2h2e5d3jq516-wpengine.netdna-ssl.com/wp-content/uploads/2015/06/Youth_shutterstock_web.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 86.5vh;
+  position: relative;
 }
 
-.landing-page button {
+.landing-page::before {
+  position: absolute;
+  content: "";
+  background-image: linear-gradient(120deg, #000000, #000000);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.landing-page h1 {
+  padding: 0px 10px 30px;
+  margin-top: -124px;
+  color: rgba(255, 255, 255, 0.75);
+  z-index: 100;
+  font-size: 32px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .landing-page h1 {
+    margin-top: -120px;
+    font-size: 40px;
+  }
+}
+
+.landing-page__button-div {
+  z-index: 200;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 90px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 768px) {
+  .landing-page__button-div {
+    padding-top: 15px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.landing-page__button {
   width: 120px;
   margin-right: 15px;
   margin-left: 15px;
+  z-index: 200;
 }
 
 .shop {

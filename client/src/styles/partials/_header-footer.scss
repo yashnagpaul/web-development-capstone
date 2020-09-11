@@ -1,28 +1,40 @@
 .header {
   width: 100vw;
-  height: 100px;
+  height: 120px;
   background-color: rgba(255, 242, 0, 1);
   color: rgba(40, 37, 98, 1);
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding: 10px 30px 10px;
   @include tablet {
     flex-direction: row;
     justify-content: space-between;
+    height: 100px;
+  }
+
+  h1 {
+    text-align: center;
   }
 
   &__link {
     margin-left: 10px;
     margin-right: 10px;
+    &:hover {
+      color: rgb(238, 39, 97);
+    }
   }
 
   &__cart {
     height: 20px;
     margin-left: 20px;
   }
+}
+
+.active {
+  color: rgb(238, 39, 97);
+  // border-radius: 4px;
 }
 
 .footer {
