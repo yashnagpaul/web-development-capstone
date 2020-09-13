@@ -1,8 +1,15 @@
 .item-page {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   padding-top: 50px;
   @include tablet {
     padding-top: 100px;
+  }
+
+  &__about-item {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: space-evenly;
   }
 }

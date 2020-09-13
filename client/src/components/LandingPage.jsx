@@ -11,7 +11,10 @@ function LandingPage() {
   return (
     <div className="landing-page">
       <h1>
-        <strong>We empower youth entrepreneurs.</strong>
+        <strong>
+          We empower <br />
+          youth entrepreneurs.
+        </strong>
       </h1>
       <div className="landing-page__button-div">
         <Link to="/shop">

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import ImageUploader from "react-images-upload";
 
 class AdminPage extends React.Component {
   constructor(props) {
@@ -16,21 +17,18 @@ class AdminPage extends React.Component {
     e.preventDefault();
 
     axios
-      .get("http://localhost:5000/api/login", {
+      .post("http://localhost:5000/api/login", {
         username: this.loginForm.current.username.value,
         pass: this.loginForm.current.password.value,
       })
-      .then((response) =>
-        response.data.status === 200
-          ? this.setState({ isLoggedIn: true })
-          : console.log(response.data)
-      )
+      .then((response) => {
+        console.log(response);
+        if (response.data.status === 200) {
+          this.setState({ isLoggedIn: true });
+          localStorage.setItem("token", response.data.token);
+        } else console.log(response.data);
+      })
       .catch((err) => console.log(err));
-
-    // console.log(
-    //   this.loginForm.current.username.value,
-    //   this.loginForm.current.password.value
-    // );
   };
 
   uploadHandler = (e) => {
@@ -49,33 +47,75 @@ class AdminPage extends React.Component {
       .then(e.target.reset);
   };
 
+  componentDidMount() {
+    if (localStorage.getItem("token")) {
+      this.setState({ isLoggedIn: true });
+    }
+  }
+
   render() {
     return this.state.isLoggedIn ? (
-      <section className="admin-page">
-        <h2>Add new product</h2>
-        <form ref={this.form} className="admin-page__upload-form">
-          <input name="image" type="text" placeholder="Image URL" />
-          <input name="title" type="text" placeholder="Product name" />
-          <input name="company" type="text" placeholder="Company name" />
-          <textarea
-            name="description"
-            id=""
-            cols="30"
-            rows="10"
-            className="admin-page__textarea"
-            placeholder="Description"
-          ></textarea>
-          <input type="number" placeholder="Price (CAD)" name="price" />
+      <div className="admin-page">
+        <section className="admin-page__upload-section">
+          <h2>Add new product</h2>
+          <form ref={this.form} className="admin-page__upload-form">
+            <ImageUploader
+              withIcon={true}
+              buttonText="Choose an image"
+              onChange={this.onDrop}
+              imgExtension={[".jpg", ".png"]}
+              maxFileSize={5242880}
+              withPreview={true}
+              label="Max size: 5mb | Accepted: jpg & png"
+            />
+            <input name="title" type="text" placeholder="Product name" />
+            <input name="company" type="text" placeholder="Company name" />
+            <textarea
+              name="description"
+              id=""
+              cols="30"
+              rows="10"
+              className="admin-page__textarea"
+              placeholder="Description"
+            ></textarea>
+            <input type="number" placeholder="Price (CAD)" name="price" />
+            <button
+              onClick={this.uploadHandler}
+              type="submit"
+              className="admin-page__submit-button"
+            >
+              UPLOAD
+            </button>
+          </form>
+        </section>
 
+        <section>
+          <h2 className="admin-page__section-divider">— or —</h2>
           <button
-            onClick={this.uploadHandler}
-            type="submit"
-            className="admin-page__submit-button"
+            className="admin-page__logout-btn"
+            onClick={localStorage.removeItem("token")}
           >
-            UPLOAD
+            LOG OUT
           </button>
+        </section>
+
+        <form className="admin-page__delete-section">
+          <h2>Delete Product</h2>
+          <input
+            type="text"
+            placeholder="Product name"
+            name="productName"
+            required
+          />
+          <input
+            type="text"
+            placeholder="Product ID"
+            name="productID"
+            required
+          />
+          <button className="admin-page__delete-button">DELETE</button>
         </form>
-      </section>
+      </div>
     ) : (
       <form ref={this.loginForm} className="admin-sign-in">
         <input name="username" type="username" placeholder="Username"></input>

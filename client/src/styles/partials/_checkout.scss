@@ -6,4 +6,17 @@
   margin-right: auto;
   margin-left: auto;
   margin-top: 10px;
+  button {
+    background-color: #32b259;
+    // color: white;
+    // font-weight: 540;
+    // margin-bottom: 15px;
+    // margin-top: -5px;
+    // border-radius: 20px;
+    // padding-left: 20px;
+    // padding-right: 20px;
+    &:hover {
+      background-color: #008b2a;
+    }
+  }
 }

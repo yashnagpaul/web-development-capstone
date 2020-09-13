@@ -3,7 +3,6 @@ body {
           box-sizing: border-box;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgba(238, 39, 97, 0.03);
   color: rgba(40, 37, 98, 0.88);
 }
 
@@ -49,12 +48,14 @@ a::hover {
   color: white;
 }
 
+select,
 textarea,
 input[type="username"],
 [type="password"],
 [type="email"],
 [type="text"],
-[type="number"] {
+[type="number"],
+[type="search"] {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 34px;
   width: 200px;
@@ -64,9 +65,10 @@ input[type="username"],
 }
 
 .item-card {
-  width: 220px;
-  height: 300px;
-  border: 1.5px solid rgba(0, 0, 0, 0.3);
+  width: 221px;
+  height: auto;
+  -webkit-box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   padding: 10px;
   display: -webkit-box;
@@ -81,7 +83,7 @@ input[type="username"],
           justify-content: space-between;
   margin-top: 1px;
   margin-bottom: 10px;
-  background-color: #fff5f8;
+  background-color: white;
 }
 
 .item-card img {
@@ -196,14 +198,14 @@ input[type="username"],
   margin-top: -124px;
   color: rgba(255, 255, 255, 0.75);
   z-index: 100;
-  font-size: 32px;
+  font-size: 29.99px;
   text-align: center;
 }
 
 @media screen and (min-width: 768px) {
   .landing-page h1 {
     margin-top: -120px;
-    font-size: 40px;
+    font-size: 60px;
   }
 }
 
@@ -256,9 +258,9 @@ input[type="username"],
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   padding-top: 50px;
 }
 
@@ -266,6 +268,20 @@ input[type="username"],
   .item-page {
     padding-top: 100px;
   }
+}
+
+.item-page__about-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 300px;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .admin-sign-in {
@@ -288,14 +304,17 @@ input[type="username"],
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   margin-top: 10px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 @media screen and (min-width: 768px) {
@@ -320,10 +339,44 @@ input[type="username"],
 
 .admin-page__textarea {
   width: 200px;
+  height: 100px;
 }
 
 .admin-page__submit-button {
   width: 200px;
+}
+
+.admin-page__image-uploader {
+  width: 200px;
+}
+
+.admin-page__delete-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 200px;
+}
+
+.admin-page__logout-btn {
+  height: 30px;
+  background-color: #32b259;
+}
+
+.admin-page__logout-btn:hover {
+  background-color: #008b2a;
+}
+
+.admin-page .fileContainer {
+  width: 200px;
+  height: 230px;
+  margin: 0px !important;
+  text-align: center;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 
 .about-page {
@@ -389,14 +442,20 @@ input[type="username"],
 }
 
 .cart__checkout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-color: #32b259;
   color: white;
   font-weight: 540;
-  margin-bottom: 15px;
-  margin-top: -5px;
+  margin: 15px auto;
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.cart__checkout:hover {
+  background-color: #008b2a;
 }
 
 .cart__error-message {
@@ -419,5 +478,25 @@ input[type="username"],
   margin-right: auto;
   margin-left: auto;
   margin-top: 10px;
+}
+
+.checkout-page button {
+  background-color: #32b259;
+}
+
+.checkout-page button:hover {
+  background-color: #008b2a;
+}
+
+.search-and-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  min-width: 300px;
+  padding: 20px;
+  border-bottom: solid 2px rgba(0, 0, 0, 0.05);
 }
 /*# sourceMappingURL=index.css.map */

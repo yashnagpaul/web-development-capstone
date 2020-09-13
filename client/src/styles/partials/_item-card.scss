@@ -1,9 +1,10 @@
 //item card
 
 .item-card {
-  width: 220px;
-  height: 300px;
-  border: 1.5px solid rgba(0, 0, 0, 0.3);
+  width: 221px;
+  height: auto;
+  // border: 1.5px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   padding: 10px;
   display: flex;
@@ -11,7 +12,9 @@
   justify-content: space-between;
   margin-top: 1px;
   margin-bottom: 10px;
-  background-color: #fff5f8;
+  // background-color: #fff5f8;
+  background-color: white;
+
   img {
     border-radius: 4px;
     width: 100%;

@@ -7,9 +7,7 @@ export default function Header(props) {
   return (
     <div className="header">
       <Link to="/">
-        <h1>
-          🍒 <i> Le marché</i>
-        </h1>
+        <h1>🍒 le marché</h1>
       </Link>
 
       <div>

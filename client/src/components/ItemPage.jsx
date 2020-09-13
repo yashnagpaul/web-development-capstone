@@ -33,7 +33,7 @@ class ItemCard extends React.Component {
     console.log(this.state.item);
     return this.state.item ? (
       <div className="item-page">
-        <div className="item-card">
+        <section className="item-card">
           <img src={this.state.item.image} alt="" />
           <h3>{this.state.item.title}</h3>
           <p>{this.state.item.company}</p>
@@ -42,7 +42,25 @@ class ItemCard extends React.Component {
           <button onClick={this.addToCartHandler} type="button">
             ADD TO CART
           </button>
-        </div>
+        </section>
+        <section className="item-page__about-item">
+          <p>Be the first one to write a review:</p>
+          <input type="text" placeholder="Your order #"></input>
+          <select name="rating">
+            <option>⭐⭐⭐⭐⭐</option>
+            <option>⭐⭐⭐⭐</option>
+            <option>⭐⭐⭐</option>
+            <option>⭐⭐</option>
+            <option>⭐</option>
+          </select>
+          <textarea
+            name="review"
+            id=""
+            cols="40"
+            rows="5"
+            placeholder="Write something..."
+          ></textarea>
+        </section>
       </div>
     ) : (
       console.log("loading")

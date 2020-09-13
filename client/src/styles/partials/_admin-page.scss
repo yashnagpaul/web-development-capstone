@@ -11,23 +11,58 @@
 
 .admin-page {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 10px;
   align-items: center;
+  justify-content: space-evenly;
   @include tablet {
     align-items: initial;
 
     padding-top: 20px;
     padding-left: 30px;
   }
+
   &__upload-form {
     display: flex;
     flex-direction: column;
   }
+
   &__textarea {
     width: 200px;
+    height: 100px;
   }
+
   &__submit-button {
     width: 200px;
+  }
+
+  &__image-uploader {
+    width: 200px;
+  }
+
+  // &__section-divider {
+  //   position: absolute;
+  //   top: 48%;
+  // }
+
+  &__delete-section {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+  &__logout-btn {
+    height: 30px;
+    background-color: #32b259;
+    &:hover {
+      background-color: #008b2a;
+    }
+  }
+
+  .fileContainer {
+    width: 200px;
+    height: 230px;
+    margin: 0px !important;
+    text-align: center;
+    box-shadow: none !important;
   }
 }

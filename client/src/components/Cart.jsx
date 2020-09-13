@@ -1,6 +1,7 @@
 import React from "react";
 import ItemCard from "./ItemCard";
 import { Link } from "react-router-dom";
+import SearchAndFilter from "./SearchAndFilter";
 
 const cartItems = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
@@ -22,31 +23,33 @@ class Cart extends React.Component {
 
   render() {
     return cartItems.length > 0 ? (
-      <section className="cart">
-        {cartItems.map((item) => (
-          <div>
-            <ItemCard
-              key={item.id}
-              id={item.id}
-              image={item.image}
-              title={item.title}
-              company={item.company}
-              description={item.description}
-              price={item.price}
-            />
-            <button
-              onClick={(e) => this.deleteHandler(e, item.id)}
-              className="cart__delete"
-              ref={this.deleteBtn}
-            >
-              DELETE
-            </button>
-          </div>
-        ))}
+      <>
+        <section className="cart">
+          {cartItems.map((item) => (
+            <div>
+              <ItemCard
+                key={item.id}
+                id={item.id}
+                image={item.image}
+                title={item.title}
+                company={item.company}
+                description={item.description}
+                price={item.price}
+              />
+              <button
+                onClick={(e) => this.deleteHandler(e, item.id)}
+                className="cart__delete"
+                ref={this.deleteBtn}
+              >
+                DELETE
+              </button>
+            </div>
+          ))}
+        </section>
         <Link to="/checkout">
           <button className="cart__checkout">CHECKOUT</button>
         </Link>
-      </section>
+      </>
     ) : (
       <div className="cart__error-message">Your cart is empty!</div>
     );

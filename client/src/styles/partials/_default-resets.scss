@@ -2,7 +2,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgba(238, 39, 97, 0.03);
+  // background-color: rgba(238, 39, 97, 0.03);
   color: rgba(40, 37, 98, 0.88);
 }
 
@@ -45,12 +45,14 @@ a::hover {
   color: white;
 }
 
+select,
 textarea,
 input[type="username"],
 [type="password"],
 [type="email"],
 [type="text"],
-[type="number"] {
+[type="number"],
+[type="search"] {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 34px;
   width: 200px;

@@ -10,6 +10,7 @@
   @include tablet {
     flex-direction: row;
   }
+
   &__delete {
     position: relative;
     bottom: 37px;
@@ -17,14 +18,18 @@
   }
 
   &__checkout {
+    display: flex;
     background-color: #32b259;
     color: white;
     font-weight: 540;
-    margin-bottom: 15px;
-    margin-top: -5px;
+    margin: 15px auto;
+    // margin-top: -5px;
     border-radius: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    &:hover {
+      background-color: #008b2a;
+    }
   }
 
   &__error-message {
