@@ -43,7 +43,7 @@ class ItemCard extends React.Component {
             ADD TO CART
           </button>
         </section>
-        <section className="item-page__about-item">
+        <form className="item-page__about-item">
           <p>Be the first one to write a review:</p>
           <input type="text" placeholder="Your order #"></input>
           <select name="rating">
@@ -60,7 +60,8 @@ class ItemCard extends React.Component {
             rows="5"
             placeholder="Write something..."
           ></textarea>
-        </section>
+          <button className="item-page__submit-review">PUBLISH</button>
+        </form>
       </div>
     ) : (
       console.log("loading")

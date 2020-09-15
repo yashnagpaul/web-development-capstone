@@ -11,8 +11,19 @@ export default function Header(props) {
       </Link>
 
       <div>
+        <button
+          style={{
+            display: localStorage.getItem("token") ? "in-line" : "none",
+          }}
+          className="admin-page__logout-btn"
+          onClick={() => {
+            localStorage.removeItem("token");
+          }}
+        >
+          LOG OUT
+        </button>
         <NavLink to="/shop" className="header__link">
-          Shop
+          Market
         </NavLink>
         <NavLink to="/admin" className="header__link">
           Admin

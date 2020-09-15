@@ -13,16 +13,16 @@ function LandingPage() {
       <h1>
         <strong>
           We empower <br />
-          youth entrepreneurs.
+          youth entrepreneurs
         </strong>
       </h1>
       <div className="landing-page__button-div">
         <Link to="/shop">
           <button className="landing-page__button">ENTER SITE</button>
         </Link>
-        <Link to="/admin">
+        {/* <Link to="/admin">
           <button className="landing-page__button">ADMIN</button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

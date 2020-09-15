@@ -11,15 +11,25 @@
 
 .admin-page {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
   align-items: center;
   justify-content: space-evenly;
   @include tablet {
     align-items: initial;
-
+    flex-direction: row;
     padding-top: 20px;
     padding-left: 30px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  br {
+    @include tablet {
+      display: none;
+    }
   }
 
   &__upload-form {

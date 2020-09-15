@@ -5,7 +5,7 @@ const {
   ADMIN_USERNAME,
   ADMIN_PASSWORD,
   SECRET,
-  PUBLISHABLE_KEY,
+  SECRET_KEY,
 } = process.env;
 
 // import required node modules
@@ -15,7 +15,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 // const uuid = require("uuid/v4");
 // TODO: add a stripe key
-// const stripe = require("stripe")(PUBLISHABLE_KEY);
+// const stripe = require("stripe")(SECRET_KEY);
 
 // install and import express depedency
 const express = require("express");

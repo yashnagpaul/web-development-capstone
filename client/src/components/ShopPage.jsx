@@ -18,7 +18,8 @@ class ShopPage extends React.Component {
   // searchResult function is passed as a prop to the search bar
 
   searchResult = (recievedData) => {
-    this.setState({ items: [recievedData[0]] });
+    console.log(recievedData);
+    this.setState({ items: recievedData });
     console.log(this.state.items);
   };
 

@@ -12,39 +12,62 @@ class SearchAndFilter extends React.Component {
 
   searchHandler = () => {
     const query = this.searchField.current.value;
-    // const searchQuery = query.toLowerCase();
+    query.length >= 1
+      ? axios
+          .get("http://localhost:5000/api/items")
+          .then((response) =>
+            response.data.filter((obj) => obj.title === query)
+          )
+          .then((result) =>
+            result.length >= 1
+              ? this.props.searchResult(result)
+              : console.log("response.length < 1 ")
+          )
+      : axios
+          .get("http://localhost:5000/api/items")
+          .then((response) => this.props.searchResult(response.data));
+  };
+
+  sortLowToHigh = () => {
     axios
       .get("http://localhost:5000/api/items")
-      .then((response) => response.data.filter((obj) => obj.title === query))
-      .then((result) =>
-        result.length >= 1
-          ? this.props.searchResult(result)
-          : console.log("response.length !== 1")
-      );
+      .then((response) => {
+        const sortedArr = response.data.sort(function (a, b) {
+          return b.price - a.price;
+        });
+        return sortedArr;
+      })
+      .then((result) => this.props.searchResult(result))
+      .catch((err) => console.log(err));
   };
+
+  sortHighToLow = () => {};
 
   render() {
     return (
       <div className="search-and-filter">
         <section>
-          <label for="search">
+          <label htmlFor="search">
             <b>Search </b>
           </label>
           <input
             ref={this.searchField}
-            onKeyUp={this.searchHandler}
+            onKeyDown={this.searchHandler}
             name="search"
             type="search"
             placeholder="Product name"
           ></input>
         </section>
         <section>
-          <label for="sort">
+          <label htmlFor="sort">
             <b>Sort </b>
           </label>
-          <select name="sort">
+          <select onChange={this.sortLowToHigh} name="sort">
+            <option>Select</option>
             <option value="price-low-high">Price: Low to High</option>
-            <option value="price-high-low">Price: High to Low</option>
+            <option onClick={this.sortHighToLow} value="price-high-low">
+              Price: High to Low
+            </option>
           </select>
         </section>
       </div>

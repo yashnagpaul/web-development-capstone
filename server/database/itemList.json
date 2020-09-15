@@ -1,42 +1,42 @@
 [
   {
     "id": 0,
-    "image": "https://skincarehero.com/wp-content/uploads/2020/03/best-bha-products.png",
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71IDYg%2BcMvL._AC_SL1500_.jpg",
     "title": "Bag Light",
     "company": "Spotlight",
     "description": "A light that fits into your bag, a solution to find things in the dark.",
-    "price": 8.99
+    "price": 0
   },
   {
     "id": 1,
-    "image": "https://skincarehero.com/wp-content/uploads/2020/03/best-bha-products.png",
-    "title": "title1",
-    "company": "company1",
-    "description": "A light that fits into your bag, a solution to find things in the dark.",
-    "price": 10.5
+    "image": "https://d2h1pu99sxkfvn.cloudfront.net/b0/13203666/532960441_hAB936Uxp4/P0.jpg",
+    "title": "Reflective Bracelet",
+    "company": "Luminate Bracelets",
+    "description": "Luminate is a reflective bracelet for walking, running, or cycling safely in the dark. It is adjustable & firs all wrist sizes.",
+    "price": 1
   },
   {
     "id": 2,
-    "image": "https://skincarehero.com/wp-content/uploads/2020/03/best-bha-products.png",
-    "title": "title2",
-    "company": "company2",
-    "description": "description2",
-    "price": 5
+    "image": "https://i.etsystatic.com/9175505/r/il/75b1d9/2131625327/il_1588xN.2131625327_7gxs.jpg",
+    "title": "Reusable Travel Mug",
+    "company": "Mød Mugs",
+    "description": "Mød mugs present a reusable travel mug while advocating positive change.",
+    "price": 2
   },
   {
     "id": 3,
-    "image": "1",
-    "title": "2",
-    "company": "3",
-    "description": "4",
-    "price": "5"
+    "image": "https://static.wixstatic.com/media/181f1e_9190cfa590a64eb8b0e4e27e69da7107~mv2.jpg",
+    "title": "Classic Pendant Necklace",
+    "company": "Joule Co.",
+    "description": "Joule Co.'s classic pendant necklace is sleek & elegant. The necklace will surely dazzle others while advocating for sustainable energy.",
+    "price": 3
   },
   {
     "id": 4,
-    "image": "1",
-    "title": "2",
-    "company": "3",
-    "description": "4",
-    "price": "5"
+    "image": "https://cdn.shopify.com/s/files/1/0827/9417/products/IMG-5778_300x300.jpg?v=1568795826",
+    "title": "Vancouver Tote Bag",
+    "company": "West Coast Totes",
+    "description": "West Coast Totes offers reflective tote bags with a unique Vancouver landscape design.",
+    "price": 3.5
   }
 ]

@@ -5,13 +5,13 @@ export default function ItemCard(props) {
   return (
     <div className="item-card">
       <Link to={`/shop/${props.id}`}>
+        <p>
+          Co: <i>{props.company}</i>
+        </p>
         <img src={props.image} alt="" />
         <h4>{props.title}</h4>
-        <p>
-          By: <i>{props.company}</i>
-        </p>
-        <h5>{props.description}</h5>
-        <p>C${props.price}</p>
+        <p>{props.description}</p>
+        <h5>C${props.price}</h5>
       </Link>
     </div>
   );

@@ -6,10 +6,21 @@
     padding-top: 100px;
   }
 
+  .item-card {
+    &:hover {
+      transition: 0.3s;
+      flex-grow: 0.02;
+    }
+  }
+
   &__about-item {
     display: flex;
     flex-direction: column;
     height: 300px;
     justify-content: space-evenly;
+  }
+
+  &__submit-review {
+    width: 200px;
   }
 }

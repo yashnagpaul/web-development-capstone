@@ -1,5 +1,7 @@
 .cart {
   display: flex;
+  flex-wrap: wrap;
+  // flex-basis: 50%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -8,17 +10,36 @@
   margin-right: auto;
   margin-left: auto;
   @include tablet {
-    flex-direction: row;
+    // flex-direction: row;
+  }
+
+  // for item-card class that appears inside the cart, use this styling:
+
+  .item-card {
+    margin-top: 0px;
+    width: 270px;
+    position: relative;
+    height: 80px;
+    img {
+      height: 45px;
+      width: 45px;
+      position: absolute;
+      right: 0;
+    }
+    p {
+      display: none;
+    }
   }
 
   &__delete {
     position: relative;
+    // padding: 0px;
     bottom: 37px;
     left: 60px;
   }
 
   &__checkout {
-    display: flex;
+    display: flex !important;
     background-color: #32b259;
     color: white;
     font-weight: 540;
@@ -35,5 +56,17 @@
   &__error-message {
     text-align: center;
     margin-top: 50px;
+  }
+}
+
+.StripeCheckout {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: none !important;
+  background: none !important;
+  background-color: #32b259 !important;
+  &:hover {
+    background-color: #008b2a !important;
   }
 }

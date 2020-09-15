@@ -7,10 +7,12 @@ class AdminPage extends React.Component {
     super(props);
     this.form = React.createRef();
     this.loginForm = React.createRef();
+    this.deleteForm = React.createRef();
   }
 
   state = {
-    isLoggedIn: false,
+    isLoggedIn: localStorage.getItem("token") ? true : false,
+    pictures: [],
   };
 
   loginHandler = (e) => {
@@ -31,10 +33,15 @@ class AdminPage extends React.Component {
       .catch((err) => console.log(err));
   };
 
+  onDrop = (picture) => {
+    // this.setState({ pictures: this.state.pictures.concat(picture) });
+    console.log(picture);
+  };
+
   uploadHandler = (e) => {
     e.preventDefault();
     const newProduct = {
-      image: this.form.current.image.value,
+      image: this.state.pictures,
       title: this.form.current.title.value,
       company: this.form.current.company.value,
       description: this.form.current.description.value,
@@ -45,6 +52,13 @@ class AdminPage extends React.Component {
       .post("http://localhost:5000/api/items", newProduct)
       .then(window.alert("New product has been added!"))
       .then(e.target.reset);
+  };
+
+  deleteHandler = (event) => {
+    event.preventDefault();
+    const deleteName = this.deleteForm.current.deleteName.value;
+    const deleteID = this.deleteForm.current.deleteID.value;
+    axios.delete("http://localhost:5000", { deleteName, deleteID });
   };
 
   componentDidMount() {
@@ -89,31 +103,24 @@ class AdminPage extends React.Component {
           </form>
         </section>
 
-        <section>
-          <h2 className="admin-page__section-divider">— or —</h2>
-          <button
-            className="admin-page__logout-btn"
-            onClick={localStorage.removeItem("token")}
-          >
-            LOG OUT
-          </button>
-        </section>
+        <br />
+        <h2 className="admin-page__section-divider">— or —</h2>
 
-        <form className="admin-page__delete-section">
+        <form ref={this.deleteForm} className="admin-page__delete-section">
           <h2>Delete Product</h2>
           <input
             type="text"
             placeholder="Product name"
-            name="productName"
+            name="deleteName"
             required
           />
-          <input
-            type="text"
-            placeholder="Product ID"
-            name="productID"
-            required
-          />
-          <button className="admin-page__delete-button">DELETE</button>
+
+          <button
+            onClick={this.deleteHandler}
+            className="admin-page__delete-button"
+          >
+            DELETE
+          </button>
         </form>
       </div>
     ) : (
