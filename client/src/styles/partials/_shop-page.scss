@@ -4,4 +4,12 @@
 
   flex-wrap: wrap;
   padding-top: 20px;
+
+  .item-card {
+    height: 255px;
+  }
+}
+
+.item-card__description {
+  display: none;
 }

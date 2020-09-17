@@ -76,3 +76,17 @@
     box-shadow: none !important;
   }
 }
+
+.errorVisible {
+  display: inline;
+  color: orangered;
+  span {
+    font-size: 23px;
+    vertical-align: initial;
+    line-height: 2;
+  }
+}
+
+.errorHidden {
+  display: none;
+}

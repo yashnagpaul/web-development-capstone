@@ -10,7 +10,7 @@ export default function ItemCard(props) {
         </p>
         <img src={props.image} alt="" />
         <h4>{props.title}</h4>
-        <p>{props.description}</p>
+        <p className="item-card__description">{props.description}</p>
         <h5>C${props.price}</h5>
       </Link>
     </div>

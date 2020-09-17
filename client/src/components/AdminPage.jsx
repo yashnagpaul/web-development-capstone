@@ -11,8 +11,17 @@ class AdminPage extends React.Component {
   }
 
   state = {
-    isLoggedIn: localStorage.getItem("token") ? true : false,
     pictures: [],
+    isLoggedIn: this.props.loggedInStatus,
+    error: false,
+  };
+
+  deleteHandler = (e) => {
+    e.preventDefault();
+    const queryKeyword = this.deleteForm.current.deleteItemName.value;
+    axios
+      .delete("http://localhost:5000/api/items", { name: queryKeyword })
+      .then((response) => console.log(response));
   };
 
   loginHandler = (e) => {
@@ -28,7 +37,12 @@ class AdminPage extends React.Component {
         if (response.data.status === 200) {
           this.setState({ isLoggedIn: true });
           localStorage.setItem("token", response.data.token);
-        } else console.log(response.data);
+          this.props.logInUpdate(this.state.isLoggedIn);
+          this.setState({ error: false });
+        } else {
+          console.log(response.data);
+          this.setState({ error: true });
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -41,7 +55,7 @@ class AdminPage extends React.Component {
   uploadHandler = (e) => {
     e.preventDefault();
     const newProduct = {
-      image: this.state.pictures,
+      // image: this.state.pictures,
       title: this.form.current.title.value,
       company: this.form.current.company.value,
       description: this.form.current.description.value,
@@ -54,12 +68,12 @@ class AdminPage extends React.Component {
       .then(e.target.reset);
   };
 
-  deleteHandler = (event) => {
-    event.preventDefault();
-    const deleteName = this.deleteForm.current.deleteName.value;
-    const deleteID = this.deleteForm.current.deleteID.value;
-    axios.delete("http://localhost:5000", { deleteName, deleteID });
-  };
+  // deleteHandler = (event) => {
+  //   event.preventDefault();
+  //   const deleteName = this.deleteForm.current.deleteName.value;
+  //   const deleteID = this.deleteForm.current.deleteID.value;
+  //   axios.delete("http://localhost:5000", { deleteName, deleteID });
+  // };
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
@@ -68,12 +82,12 @@ class AdminPage extends React.Component {
   }
 
   render() {
-    return this.state.isLoggedIn ? (
+    return this.props.loggedInStatus ? (
       <div className="admin-page">
         <section className="admin-page__upload-section">
           <h2>Add new product</h2>
           <form ref={this.form} className="admin-page__upload-form">
-            <ImageUploader
+            {/* <ImageUploader
               withIcon={true}
               buttonText="Choose an image"
               onChange={this.onDrop}
@@ -81,7 +95,8 @@ class AdminPage extends React.Component {
               maxFileSize={5242880}
               withPreview={true}
               label="Max size: 5mb | Accepted: jpg & png"
-            />
+            /> */}
+            <input name="image" type="file" />
             <input name="title" type="text" placeholder="Product name" />
             <input name="company" type="text" placeholder="Company name" />
             <textarea
@@ -111,7 +126,7 @@ class AdminPage extends React.Component {
           <input
             type="text"
             placeholder="Product name"
-            name="deleteName"
+            name="deleteItemName"
             required
           />
 
@@ -130,6 +145,10 @@ class AdminPage extends React.Component {
         <button onClick={this.loginHandler} type="submit">
           LOG IN
         </button>
+        <div className={this.state.error ? "errorVisible" : "errorHidden"}>
+          {/* <span>🧐 </span> */}
+          This username / password combination doesn't match our records.
+        </div>
       </form>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 
-class ItemCard extends React.Component {
+class ItemPage extends React.Component {
   state = {
     item: {},
   };
@@ -15,7 +15,9 @@ class ItemCard extends React.Component {
       : console.log("no items in cart");
     newCartItems.push(this.state.item);
     localStorage.setItem("cartItems", JSON.stringify(newCartItems));
-    console.log("working");
+    this.props.cartItemsUpdated(
+      JSON.parse(localStorage.getItem("cartItems")).length
+    );
   };
 
   componentDidMount() {
@@ -33,12 +35,14 @@ class ItemCard extends React.Component {
     console.log(this.state.item);
     return this.state.item ? (
       <div className="item-page">
-        <section className="item-card">
-          <img src={this.state.item.image} alt="" />
-          <h3>{this.state.item.title}</h3>
-          <p>{this.state.item.company}</p>
-          <h4>{this.state.item.description}</h4>
-          <p>{this.state.item.price}</p>
+        <section className="item-page__item">
+          <div>
+            <img src={this.state.item.image} alt="" />
+            <h2>{this.state.item.title}</h2>
+            <h3>By: {this.state.item.company}</h3>
+            <p>{this.state.item.description}</p>
+            <h5>Price: C${this.state.item.price}</h5>
+          </div>
           <button onClick={this.addToCartHandler} type="button">
             ADD TO CART
           </button>
@@ -69,4 +73,4 @@ class ItemCard extends React.Component {
   }
 }
 
-export default ItemCard;
+export default ItemPage;

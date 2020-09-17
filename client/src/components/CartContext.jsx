@@ -1,9 +1,16 @@
-import React, { createContext } from "react";
+// import React, { createContext } from "react";
+// import Cart from "./Cart";
 
-export const MovieContext = createContext();
+// export const CartContext = createContext({
+//   numberOfCartItems: 0,
+//   cartItems: [],
+//   changeCartContent: () => {},
+// });
 
-export const CartProvider = () => {
-  const cartItems = JSON.parse(localStorage.getItem, "cartItems");
-
-  return 1;
-};
+// export const CartProvider = (props) => {
+//   return (
+//     <CartContext.Provider value={JSON.parse(localStorage.cartItems)}>
+//       {props.children}
+//     </CartContext.Provider>
+//   );
+// };

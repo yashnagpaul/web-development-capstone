@@ -55,7 +55,8 @@ input[type="username"],
 [type="email"],
 [type="text"],
 [type="number"],
-[type="search"] {
+[type="search"],
+[type="file"] {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 34px;
   width: 200px;
@@ -65,9 +66,10 @@ input[type="username"],
 }
 
 .item-card {
-  width: 230px;
+  width: 249.43px;
   height: 400px;
   color: darkslategray;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
           box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
   border-radius: 5px;
@@ -82,12 +84,16 @@ input[type="username"],
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 1px 5px 10px;
+  margin: 1px 10px 10px;
   background-color: white;
 }
 
 .item-card:hover {
   background-color: #fff5f8;
+}
+
+.item-card * {
+  margin-left: 5px;
 }
 
 .item-card img {
@@ -102,7 +108,9 @@ input[type="username"],
 .header {
   width: 100vw;
   height: 120px;
-  background-color: rgba(255, 242, 0, 0.08);
+  -webkit-box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 242, 0, 0.8);
   color: #282562;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -156,11 +164,12 @@ input[type="username"],
 
 .footer {
   position: absolute;
-  background-color: #ffe6ee;
-  width: 100vw;
   bottom: 0;
+  background-color: rgba(255, 242, 0, 0.08);
+  width: 100vw;
   padding-bottom: 10px;
-  margin-top: 10px;
+  padding-top: 10px;
+  margin-top: 0.01px;
   text-align: center;
 }
 
@@ -258,28 +267,56 @@ input[type="username"],
   padding-top: 20px;
 }
 
+.shop .item-card {
+  height: 255px;
+}
+
+.item-card__description {
+  display: none;
+}
+
 .item-page {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  padding-left: 23px;
   padding-top: 50px;
 }
 
 @media screen and (min-width: 768px) {
   .item-page {
-    padding-top: 100px;
+    padding-left: 0px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
 }
 
-.item-page .item-card:hover {
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  -webkit-box-flex: 0.02;
-      -ms-flex-positive: 0.02;
-          flex-grow: 0.02;
+.item-page__item {
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+.item-page__item img {
+  width: 350px;
+  height: auto;
+  border-radius: 6px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.item-page__item img:hover {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  width: 100%;
 }
 
 .item-page__about-item {
@@ -409,6 +446,21 @@ input[type="username"],
           box-shadow: none !important;
 }
 
+.errorVisible {
+  display: inline;
+  color: orangered;
+}
+
+.errorVisible span {
+  font-size: 23px;
+  vertical-align: initial;
+  line-height: 2;
+}
+
+.errorHidden {
+  display: none;
+}
+
 .about-page {
   width: 300px;
   margin-top: 30px;
@@ -519,6 +571,15 @@ input[type="username"],
   background-color: #008b2a !important;
 }
 
+.shipping-fee-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .checkout-page {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -554,5 +615,28 @@ input[type="username"],
   min-width: 300px;
   padding: 20px;
   border-bottom: solid 2px rgba(0, 0, 0, 0.05);
+}
+
+.search-and-filter section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .search-and-filter section {
+    display: inline-block;
+  }
+}
+
+.search-and-filter section b {
+  margin-bottom: 10px;
 }
 /*# sourceMappingURL=index.css.map */

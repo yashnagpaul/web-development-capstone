@@ -52,7 +52,8 @@ input[type="username"],
 [type="email"],
 [type="text"],
 [type="number"],
-[type="search"] {
+[type="search"],
+[type="file"] {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 34px;
   width: 200px;
@@ -60,3 +61,12 @@ input[type="username"],
   border: 0.1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
+
+// [type="file"] {
+//   font-family: Arial, Helvetica, sans-serif;
+//   min-height: 34px;
+//   width: auto;
+//   padding: 10px;
+//   border: 0.1px solid rgba(0, 0, 0, 0.2);
+//   border-radius: 4px;
+// }

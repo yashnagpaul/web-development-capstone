@@ -13,6 +13,8 @@ const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+// const multer = require("multer");
+// const upload = multer({ dest: "/uploads/" });
 // const uuid = require("uuid/v4");
 // TODO: add a stripe key
 // const stripe = require("stripe")(SECRET_KEY);
@@ -32,6 +34,19 @@ app.use(express.json());
 app.use(cors());
 
 // ========== * ========== * ROUTES * ========== * ==========
+
+app.delete("/api/items", (req, res) => {
+  let itemList = JSON.parse(listOfItems);
+  const itemsAfterDeleting = itemList.filter(
+    (item) => item.name !== req.body.name
+  );
+  fs.writeFileSync(
+    path.join(__dirname, "./database/itemList.json"),
+    JSON.stringify(itemsAfterDeleting)
+  );
+  res.json(`Deleted ${req.body.name}`);
+  console.log(`Deleted ${req.body.name}`);
+});
 
 app.get("/api", (req, res) =>
   res.send("<h1>Server under construction :)</h1>")
@@ -61,7 +76,8 @@ app.post("/api/login", (req, res) => {
 app.post("/api/items", (req, res) => {
   const newItem = {
     id: JSON.parse(listOfItems).length,
-    image: req.body.image,
+    image:
+      "https://scontent.fyvr1-1.fna.fbcdn.net/v/t1.0-9/67745950_1198722440306650_3897083973829918720_n.jpg?_nc_cat=104&_nc_sid=9267fe&_nc_ohc=ODbDTV99qzcAX-6Ga2V&_nc_ht=scontent.fyvr1-1.fna&oh=417487ec39cdf14b4b1bf2e32d5e891b&oe=5F8897AD",
     title: req.body.title,
     company: req.body.company,
     description: req.body.description,
@@ -73,6 +89,9 @@ app.post("/api/items", (req, res) => {
     JSON.stringify(newItemsArr)
   );
 });
+
+// add new item with image using MULTER
+// app.post('/api/items')
 
 app.post("/payment", (req, res) => {
   const { product, token } = req.body;
