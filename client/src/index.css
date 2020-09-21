@@ -309,13 +309,13 @@ input[type="username"],
   width: 350px;
   height: auto;
   border-radius: 6px;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .item-page__item img:hover {
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
   width: 100%;
 }
 
@@ -528,10 +528,17 @@ input[type="username"],
   display: none;
 }
 
-.cart__delete {
+.cart__input-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
+  width: 100%;
   bottom: 37px;
-  left: 60px;
+}
+
+.cart__quantity {
+  width: 100px;
 }
 
 .cart__checkout {

@@ -18,9 +18,11 @@ class AdminPage extends React.Component {
 
   deleteHandler = (e) => {
     e.preventDefault();
-    const queryKeyword = this.deleteForm.current.deleteItemName.value;
+    // const queryKeyword = this.deleteForm.current.deleteItemName.value;
     axios
-      .delete("http://localhost:5000/api/items", { name: queryKeyword })
+      .delete("http://localhost:5000/api/items", {
+        name: this.deleteForm.current.deleteItemName.value,
+      })
       .then((response) => console.log(response));
   };
 
@@ -60,6 +62,7 @@ class AdminPage extends React.Component {
       company: this.form.current.company.value,
       description: this.form.current.description.value,
       price: this.form.current.price.value,
+      reviews: [],
     };
 
     axios
@@ -68,12 +71,15 @@ class AdminPage extends React.Component {
       .then(e.target.reset);
   };
 
-  // deleteHandler = (event) => {
-  //   event.preventDefault();
-  //   const deleteName = this.deleteForm.current.deleteName.value;
-  //   const deleteID = this.deleteForm.current.deleteID.value;
-  //   axios.delete("http://localhost:5000", { deleteName, deleteID });
-  // };
+  deleteHandler = (event) => {
+    event.preventDefault();
+    const deleteName = this.deleteForm.current.deleteItemName.value;
+    // const deleteID = this.deleteForm.current.deleteID.value;
+    axios.delete("http://localhost:5000/api/items", {
+      deleteName: this.deleteForm.current.deleteItemName.value,
+    });
+    console.log("deleteName", deleteName);
+  };
 
   componentDidMount() {
     if (localStorage.getItem("token")) {

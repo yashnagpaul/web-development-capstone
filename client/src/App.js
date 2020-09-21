@@ -73,7 +73,7 @@ class App extends React.Component {
             )}
           ></Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
         {/* </CartProvider> */}
       </BrowserRouter>
     );

@@ -35,22 +35,33 @@ app.use(cors());
 
 // ========== * ========== * ROUTES * ========== * ==========
 
-app.delete("/api/items", (req, res) => {
+app.patch("/api/items", (req, res) => {
   let itemList = JSON.parse(listOfItems);
-  const itemsAfterDeleting = itemList.filter(
-    (item) => item.name !== req.body.name
-  );
+  let itemToEdit = itemList.find((item) => item.id == req.body.id);
+  itemToEdit.reviews = req.body.comments;
+  itemList.splice(itemToEdit.id, 1, itemToEdit);
   fs.writeFileSync(
     path.join(__dirname, "./database/itemList.json"),
-    JSON.stringify(itemsAfterDeleting)
+    JSON.stringify(itemList)
   );
-  res.json(`Deleted ${req.body.name}`);
-  console.log(`Deleted ${req.body.name}`);
+  res.json(itemList[itemToEdit.id]);
 });
 
-app.get("/api", (req, res) =>
-  res.send("<h1>Server under construction :)</h1>")
-);
+app.delete("/api/items", (req, res) => {
+  let itemList = JSON.parse(listOfItems);
+  console.log(req.body);
+  // const itemsAfterDeleting = itemList.filter(
+  //   (item) => item.name !== req.body.name
+  // );
+  // fs.writeFileSync(
+  //   path.join(__dirname, "./database/itemList.json"),
+  //   JSON.stringify(itemsAfterDeleting)
+  // );
+  // res.json(`Deleted ${req.body.name}`);
+  console.log(`Deleted ${req.body.deleteName}`);
+});
+
+app.get("/api", (req, res) => res.send("<h1>Try /api/items </h1>"));
 
 // get all items
 app.get("/api/items", (req, res) => res.json(JSON.parse(listOfItems)));
@@ -82,7 +93,9 @@ app.post("/api/items", (req, res) => {
     company: req.body.company,
     description: req.body.description,
     price: req.body.price,
+    reviews: req.body.reviews,
   };
+
   const newItemsArr = JSON.parse(listOfItems).concat(newItem);
   fs.writeFileSync(
     path.join(__dirname, "./database/itemList.json"),

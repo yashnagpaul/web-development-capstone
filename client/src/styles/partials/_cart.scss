@@ -31,12 +31,19 @@
     }
   }
 
-  &__delete {
+  &__input-group {
+    display: flex;
     position: relative;
-    // padding: 0px;
+    width: 100%;
     bottom: 37px;
-    left: 60px;
   }
+
+  &__quantity {
+    width: 100px;
+  }
+
+  // &__delete {
+  // }
 
   &__checkout {
     display: flex !important;
