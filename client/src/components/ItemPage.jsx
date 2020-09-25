@@ -8,7 +8,6 @@ class ItemPage extends React.Component {
     this.reviewForm = React.createRef();
     this.state = {
       item: {},
-      // reviews: [{ name: "A", rating: "A", body: "ok" }],
     };
   }
 
@@ -18,14 +17,12 @@ class ItemPage extends React.Component {
     existingCartItems
       ? newCartItems.push(...JSON.parse(existingCartItems))
       : console.log("no items in cart");
-    newCartItems.push(this.state.item);
+    newCartItems.push({ ...this.state.item, quantity: 1 });
     localStorage.setItem("cartItems", JSON.stringify(newCartItems));
     this.props.cartItemsUpdated(
       JSON.parse(localStorage.getItem("cartItems")).length
     );
   };
-
-  //FIX commentHandler LOGIC
 
   commentHandler = (e) => {
     e.preventDefault();
@@ -57,7 +54,6 @@ class ItemPage extends React.Component {
   };
 
   render() {
-    console.log(this.state.item.reviews);
     return this.state.item.reviews ? (
       <div className="item-page">
         <section className="item-page__item">
@@ -109,7 +105,7 @@ class ItemPage extends React.Component {
             <br />
             {this.state.item.reviews.length > 0
               ? this.state.item.reviews.map((review) => (
-                  <div>
+                  <div key={review.comment}>
                     <p>
                       By: <b>{review.name}</b>
                     </p>

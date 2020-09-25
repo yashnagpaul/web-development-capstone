@@ -47,18 +47,16 @@ app.patch("/api/items", (req, res) => {
   res.json(itemList[itemToEdit.id]);
 });
 
-app.delete("/api/items", (req, res) => {
+app.delete("/api/items/:id", (req, res) => {
   let itemList = JSON.parse(listOfItems);
-  console.log(req.body);
-  // const itemsAfterDeleting = itemList.filter(
-  //   (item) => item.name !== req.body.name
-  // );
-  // fs.writeFileSync(
-  //   path.join(__dirname, "./database/itemList.json"),
-  //   JSON.stringify(itemsAfterDeleting)
-  // );
-  // res.json(`Deleted ${req.body.name}`);
-  console.log(`Deleted ${req.body.deleteName}`);
+  const itemsAfterDeleting = itemList.filter(
+    (item) => item.id != req.params.id
+  );
+  fs.writeFileSync(
+    path.join(__dirname, "./database/itemList.json"),
+    JSON.stringify(itemsAfterDeleting)
+  );
+  res.json(`Deleted ${req.params.id}`);
 });
 
 app.get("/api", (req, res) => res.send("<h1>Try /api/items </h1>"));

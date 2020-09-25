@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import ImageUploader from "react-images-upload";
+// import ImageUploader from "react-images-upload";
 
 class AdminPage extends React.Component {
   constructor(props) {
@@ -18,11 +18,9 @@ class AdminPage extends React.Component {
 
   deleteHandler = (e) => {
     e.preventDefault();
-    // const queryKeyword = this.deleteForm.current.deleteItemName.value;
+    const queryKeyword = this.deleteForm.current.deleteItemName.value;
     axios
-      .delete("http://localhost:5000/api/items", {
-        name: this.deleteForm.current.deleteItemName.value,
-      })
+      .delete(`http://localhost:5000/api/items/${queryKeyword}`)
       .then((response) => console.log(response));
   };
 
@@ -35,7 +33,6 @@ class AdminPage extends React.Component {
         pass: this.loginForm.current.password.value,
       })
       .then((response) => {
-        console.log(response);
         if (response.data.status === 200) {
           this.setState({ isLoggedIn: true });
           localStorage.setItem("token", response.data.token);
@@ -69,16 +66,6 @@ class AdminPage extends React.Component {
       .post("http://localhost:5000/api/items", newProduct)
       .then(window.alert("New product has been added!"))
       .then(e.target.reset);
-  };
-
-  deleteHandler = (event) => {
-    event.preventDefault();
-    const deleteName = this.deleteForm.current.deleteItemName.value;
-    // const deleteID = this.deleteForm.current.deleteID.value;
-    axios.delete("http://localhost:5000/api/items", {
-      deleteName: this.deleteForm.current.deleteItemName.value,
-    });
-    console.log("deleteName", deleteName);
   };
 
   componentDidMount() {

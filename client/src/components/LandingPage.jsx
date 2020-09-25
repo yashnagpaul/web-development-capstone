@@ -6,7 +6,7 @@ function LandingPage() {
     ? console.log("cartItemsExists")
     : localStorage.setItem("cartItems", []);
 
-  console.log(localStorage.getItem("cartItems"));
+  // console.log(localStorage.getItem("cartItems"));
 
   return (
     <div className="landing-page">

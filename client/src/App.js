@@ -8,8 +8,7 @@ import AboutPage from "./components/AboutPage";
 import LandingPage from "./components/LandingPage";
 import Checkout from "./components/Checkout";
 import AdminPage from "./components/AdminPage";
-import Footer from "./components/Footer";
-import { CartProvider } from "./components/CartContext";
+// import Footer from "./components/Footer";
 
 class App extends React.Component {
   state = {
@@ -36,7 +35,6 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        {/* <CartProvider> */}
         <Header
           numberOfCartItems={this.state.numberOfCartItems}
           logInUpdate={this.logInUpdate}
@@ -74,7 +72,6 @@ class App extends React.Component {
           ></Route>
         </Switch>
         {/* <Footer /> */}
-        {/* </CartProvider> */}
       </BrowserRouter>
     );
   }

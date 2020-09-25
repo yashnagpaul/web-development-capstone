@@ -1,14 +1,13 @@
-import React, { createContext } from "react";
+import React from "react";
 import ItemCard from "./ItemCard";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // require("dotenv").config();
 import StripeCheckout from "react-stripe-checkout";
 // import SearchAndFilter from "./SearchAndFilter";
-import { CartContext } from "./CartContext";
 
-const REACT_APP_KEY = process.env.REACT_APP_KEY;
+// const REACT_APP_KEY = process.env.REACT_APP_KEY;
 
-let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+// let cartItems = JSON.parse(localStorage.getItem("cartItems"));
 
 class Cart extends React.Component {
   constructor(props) {
@@ -30,7 +29,6 @@ class Cart extends React.Component {
   //on click -> look at the id and filter the array in localstorage where item.id !== button.id
   // then localStorage.setItem ('cartItem', the filtered Array)
   deleteHandler = (e, id) => {
-    console.log(id);
     const oldItems = JSON.parse(localStorage.getItem("cartItems"));
     const newItems = oldItems.filter((item) => item.id !== id);
     localStorage.setItem("cartItems", JSON.stringify(newItems));
@@ -38,23 +36,23 @@ class Cart extends React.Component {
     this.props.cartItemsUpdated(this.state.cartItems.length);
   };
 
-  // quantityUpdated = (itemID, value) => {
-  //   if (value >= 1) {
-  //     let itemToUpdate = this.state.cartItems.find(
-  //       (item) => item.id === itemID
-  //     );
-  //     console.log(itemToUpdate.price);
-  //     itemToUpdate.price = itemToUpdate.price * value;
-  //     const newItems = this.state.cartItems.splice(
-  //       itemToUpdate.id,
-  //       1,
-  //       itemToUpdate
-  //     );
-  //     this.setState({ cartItems: newItems });
-  //     console.log(itemID);
-  //     console.log(value);
-  //   }
-  // };
+  quantityUpdated = (itemID, userInput) => {
+    if (!userInput) userInput = 1;
+    let index = this.state.cartItems.findIndex((item) => item.id === itemID);
+    console.log("index", index); // find the index of the item to be updated
+
+    let newCartItems = [...this.state.cartItems];
+    console.log("newCartItems", newCartItems); // create a copy of the cartItems array in state
+
+    newCartItems[index] = { ...newCartItems[index], quantity: userInput };
+    console.log("newCartItems[index]", newCartItems[index]); // update the quantity of the item that needs to be updated
+
+    this.setState({ cartItems: newCartItems });
+    // use the new array with the updated item and setState
+  };
+
+  // the quantityUpdated function only seems to be working for the last item in the list
+  // also, whenever an item is deleted from the list the app seems to throw an error
 
   makePayment = (token) => {
     const body = {
@@ -77,7 +75,6 @@ class Cart extends React.Component {
   };
 
   componentDidMount() {
-    // console.log(this.context);
     this.setState({
       cartItems: localStorage.getItem("cartItems")
         ? JSON.parse(localStorage.getItem("cartItems"))
@@ -93,7 +90,7 @@ class Cart extends React.Component {
       <>
         <section className="cart">
           {this.state.cartItems.map((item) => (
-            <div className="cart__item-row">
+            <div key={item.id} className="cart__item-row">
               <ItemCard
                 key={item.id}
                 id={item.id}
@@ -101,18 +98,19 @@ class Cart extends React.Component {
                 title={item.title}
                 company={item.company}
                 description={item.description}
-                price={`${item.price}`}
+                price={item.price * item.quantity}
               />
               <div className="cart__input-group">
-                {/* <input
+                <input
                   ref={this.qty}
-                  onChange={() =>
-                    this.quantityUpdated(item.id, this.qty.current.value)
-                  } //when quantity is changed, send it to state
+                  onChange={(e) =>
+                    this.quantityUpdated(item.id, e.target.value)
+                  }
+                  //instead of fiddling with the param, change the logic of the function
                   className="cart__quantity"
                   type="number"
                   placeholder="Quantity"
-                ></input> */}
+                ></input>
                 <button
                   onClick={(e) => this.deleteHandler(e, item.id)}
                   className="cart__delete"
@@ -127,7 +125,9 @@ class Cart extends React.Component {
         </section>
         <StripeCheckout
           stripeKey="pk_test_51HQSP2HjC2la8EuOg1AvcdcQowgS0Fgl3tiXoezVICVhhrdJpGApir7KYqSaKvS4kdJsIE1YdENEBLMVfK2iPIlZ005wP5Xfmf"
-          token=""
+          token={() => {
+            "";
+          }}
           name={`Confirm order`}
           amount={
             (

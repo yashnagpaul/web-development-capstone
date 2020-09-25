@@ -21,8 +21,6 @@ class Header extends React.Component {
   // also set state for number of items in cart
 
   render() {
-    console.log(this.props.isLoggedIn);
-    console.log(this.state.loggedIn);
     return (
       <div className="header">
         <Link to="/">
