@@ -5,6 +5,7 @@ class SearchAndFilter extends React.Component {
   constructor(props) {
     super(props);
     this.searchField = React.createRef();
+    this.select = React.createRef();
   }
 
   // TODO: fix searchHandler for a scenario when search returns more than 1 results
@@ -28,20 +29,42 @@ class SearchAndFilter extends React.Component {
           .then((response) => this.props.searchResult(response.data));
   };
 
-  sortLowToHigh = () => {
-    axios
-      .get("http://localhost:5000/api/items")
-      .then((response) => {
-        const sortedArr = response.data.sort(function (a, b) {
-          return b.price - a.price;
-        });
-        return sortedArr;
-      })
-      .then((result) => this.props.searchResult(result))
-      .catch((err) => console.log(err));
+  sortHandler = (e) => {
+    if (e.target.value === "price-low-high") {
+      axios
+        .get("http://localhost:5000/api/items")
+        .then((response) => {
+          const sortedArr = response.data.sort(function (a, b) {
+            return a.price - b.price;
+          });
+          return sortedArr;
+        })
+        .then((result) => this.props.searchResult(result))
+        .catch((err) => console.log(err));
+    } else if (e.target.value === "price-high-low") {
+      axios
+        .get("http://localhost:5000/api/items")
+        .then((response) => {
+          const sortedArr = response.data.sort(function (a, b) {
+            return b.price - a.price;
+          });
+          return sortedArr;
+        })
+        .then((result) => this.props.searchResult(result))
+        .catch((err) => console.log(err));
+    } else if (e.target.value === "alphabetic-order") {
+      axios
+        .get("http://localhost:5000/api/items")
+        .then((response) => {
+          const sortedArr = response.data.sort(function (a, b) {
+            return a.title - b.title;
+          });
+          return sortedArr;
+        })
+        .then((result) => this.props.searchResult(result))
+        .catch((err) => console.log(err));
+    }
   };
-
-  sortHighToLow = () => {};
 
   render() {
     return (
@@ -62,12 +85,15 @@ class SearchAndFilter extends React.Component {
           <label htmlFor="sort">
             <b>Sort </b>
           </label>
-          <select onChange={this.sortLowToHigh} name="sort">
+          <select
+            // ref={this.select}
+            onChange={(e) => this.sortHandler(e)}
+            name="sort"
+          >
             <option>Select</option>
+            <option value="alphabetic-order">Alphabetic A-Z</option>
             <option value="price-low-high">Price: Low to High</option>
-            <option onClick={this.sortHighToLow} value="price-high-low">
-              Price: High to Low
-            </option>
+            <option value="price-high-low">Price: High to Low</option>
           </select>
         </section>
       </div>

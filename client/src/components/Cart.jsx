@@ -19,6 +19,10 @@ class Cart extends React.Component {
     };
   }
 
+  clickPay = () => {
+    window.alert("Paid");
+  };
+
   calculateTotal = () => {
     let orderTotal = 0;
     this.state.cartItems.map((item) => (orderTotal = orderTotal + item.price));
@@ -124,6 +128,7 @@ class Cart extends React.Component {
           ))}
         </section>
         <StripeCheckout
+          onClick={this.clickPay}
           stripeKey="pk_test_51HQSP2HjC2la8EuOg1AvcdcQowgS0Fgl3tiXoezVICVhhrdJpGApir7KYqSaKvS4kdJsIE1YdENEBLMVfK2iPIlZ005wP5Xfmf"
           token={() => {
             "";
