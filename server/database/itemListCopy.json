@@ -5,7 +5,7 @@
     "title": "Bag Light",
     "company": "Spotlight",
     "description": "A light that fits inside your bag. A solution for finding things in the dark.",
-    "price": 10,
+    "price": 10.75,
     "reviews": [
       { "name": "Alpha", "rating": "⭐⭐⭐⭐⭐", "comment": "Good product" },
       { "name": "Delta", "rating": "⭐⭐⭐⭐", "comment": "It's nice" }
@@ -17,7 +17,7 @@
     "title": "Reflective Bracelet",
     "company": "Luminate Bracelets",
     "description": "Luminate is a reflective bracelet for walking, running, or cycling safely in the dark. It is adjustable and fits all wrist sizes.",
-    "price": 10,
+    "price": 8.99,
     "reviews": [
       { "name": "Alpha", "rating": "⭐⭐⭐⭐⭐", "comment": "Good product" },
       { "name": "Delta", "rating": "⭐⭐⭐⭐", "comment": "It's nice" }
@@ -29,7 +29,7 @@
     "title": "Reusable Travel Mug",
     "company": "MØD Mugs",
     "description": "MØD Mugs present a reusable travel mug while advocating for environment change.",
-    "price": 10,
+    "price": 16.25,
     "reviews": [
       { "name": "Alpha", "rating": "⭐⭐⭐⭐⭐", "comment": "Good product" },
       { "name": "Delta", "rating": "⭐⭐⭐⭐", "comment": "It's nice" }
@@ -41,7 +41,7 @@
     "title": "Classic Pendant Necklace",
     "company": "Joul Co.",
     "description": "Joule Co's classic pendant necklace is sleek & elegant. The necklace will surely dazzle others while advocating for sustainable energy.",
-    "price": 10,
+    "price": 20,
     "reviews": [
       { "name": "Alpha", "rating": "⭐⭐⭐⭐⭐", "comment": "Good product" },
       { "name": "Delta", "rating": "⭐⭐⭐⭐", "comment": "It's nice" }
@@ -53,7 +53,7 @@
     "title": "Reflective Tote Bag",
     "company": "West Coast Totes",
     "description": "West Coast Totes offers reflective tote bags with a unique Vancouver landscape design.",
-    "price": 10,
+    "price": 9.5,
     "reviews": [
       { "name": "Alpha", "rating": "⭐⭐⭐⭐⭐", "comment": "Good product" },
       { "name": "Delta", "rating": "⭐⭐⭐⭐", "comment": "It's nice" }

@@ -13,15 +13,27 @@ const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-// const multer = require("multer");
-// const upload = multer({ dest: "/uploads/" });
-// const uuid = require("uuid/v4");
+
 // TODO: add a stripe key
 // const stripe = require("stripe")(SECRET_KEY);
 
 // install and import express depedency
 const express = require("express");
 const app = express();
+
+// MULTER
+const multer = require("multer");
+app.use(express.static("./public"));
+const multerConfig = {
+  storage: multer.diskStorage({
+    destination: function (req, file, next) {
+      next(null, "./public/uploads/");
+    },
+    filename: function (req, file, next) {
+      console.log(file);
+    },
+  }),
+};
 
 // import and read required files
 const listOfItems = fs.readFileSync(
