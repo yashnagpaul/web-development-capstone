@@ -5,9 +5,10 @@ import axios from "axios";
 class AdminPage extends React.Component {
   constructor(props) {
     super(props);
-    this.form = React.createRef();
+    this.uploadForm = React.createRef();
     this.loginForm = React.createRef();
     this.deleteForm = React.createRef();
+    this.fileInput = React.createRef();
   }
 
   state = {
@@ -53,20 +54,31 @@ class AdminPage extends React.Component {
 
   uploadHandler = (e) => {
     e.preventDefault();
-    const newProduct = {
-      // image: this.state.pictures,
-      title: this.form.current.title.value,
-      company: this.form.current.company.value,
-      description: this.form.current.description.value,
-      price: this.form.current.price.value,
-      reviews: [],
-    };
-
+    const data = new FormData();
+    data.append("name", this.uploadForm.current.title.value);
+    data.append("file", this.fileInput.current.files[0]);
     axios
-      .post("http://localhost:5000/api/items", newProduct)
-      .then(window.alert("New product has been added!"))
-      .then(e.target.reset);
+      .post("http://localhost:5000/api/items", data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
+
+  // uploadHandler = (e) => {
+  //   e.preventDefault();
+  //   const newProduct = {
+  //     // image: this.state.pictures,
+  //     title: this.uploadForm.current.title.value,
+  //     company: this.uploadForm.current.company.value,
+  //     description: this.uploadForm.current.description.value,
+  //     price: this.uploadForm.current.price.value,
+  //     reviews: [],
+  //   };
+
+  //   axios
+  //     .post("http://localhost:5000/api/items", newProduct)
+  //     .then(window.alert("New product has been added!"))
+  //     .then(e.target.reset);
+  // };
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
@@ -79,17 +91,8 @@ class AdminPage extends React.Component {
       <div className="admin-page">
         <section className="admin-page__upload-section">
           <h2>Add new product</h2>
-          <form ref={this.form} className="admin-page__upload-form">
-            {/* <ImageUploader
-              withIcon={true}
-              buttonText="Choose an image"
-              onChange={this.onDrop}
-              imgExtension={[".jpg", ".png"]}
-              maxFileSize={5242880}
-              withPreview={true}
-              label="Max size: 5mb | Accepted: jpg & png"
-            /> */}
-            <input name="image" type="file" />
+          <form ref={this.uploadForm} className="admin-page__upload-form">
+            <input ref={this.fileInput} name="image" type="file" />
             <input name="title" type="text" placeholder="Product name" />
             <input name="company" type="text" placeholder="Company name" />
             <textarea
@@ -118,7 +121,7 @@ class AdminPage extends React.Component {
           <h2>Delete Product</h2>
           <input
             type="text"
-            placeholder="Product name"
+            placeholder="Product ID"
             name="deleteItemName"
             required
           />

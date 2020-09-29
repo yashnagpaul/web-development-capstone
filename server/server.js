@@ -23,17 +23,6 @@ const app = express();
 
 // MULTER
 const multer = require("multer");
-app.use(express.static("./public"));
-const multerConfig = {
-  storage: multer.diskStorage({
-    destination: function (req, file, next) {
-      next(null, "./public/uploads/");
-    },
-    filename: function (req, file, next) {
-      console.log(file);
-    },
-  }),
-};
 
 // import and read required files
 const listOfItems = fs.readFileSync(
@@ -46,6 +35,13 @@ app.use(express.json());
 app.use(cors());
 
 // ========== * ========== * ROUTES * ========== * ==========
+
+const upload = multer();
+app.post("/api/items", upload.single("file"), (req, res, next) => {
+  console.log(req.file);
+});
+
+//
 
 app.patch("/api/items", (req, res) => {
   let itemList = JSON.parse(listOfItems);
@@ -93,28 +89,24 @@ app.post("/api/login", (req, res) => {
   }
 });
 
-// add new item
-app.post("/api/items", (req, res) => {
-  const newItem = {
-    id: JSON.parse(listOfItems).length,
-    image:
-      "https://scontent.fyvr1-1.fna.fbcdn.net/v/t1.0-9/67745950_1198722440306650_3897083973829918720_n.jpg?_nc_cat=104&_nc_sid=9267fe&_nc_ohc=ODbDTV99qzcAX-6Ga2V&_nc_ht=scontent.fyvr1-1.fna&oh=417487ec39cdf14b4b1bf2e32d5e891b&oe=5F8897AD",
-    title: req.body.title,
-    company: req.body.company,
-    description: req.body.description,
-    price: req.body.price,
-    reviews: req.body.reviews,
-  };
+// app.post("/api/items", (req, res) => {
+//   const newItem = {
+//     id: JSON.parse(listOfItems).length,
+//     image:
+//       "https://scontent.fyvr1-1.fna.fbcdn.net/v/t1.0-9/67745950_1198722440306650_3897083973829918720_n.jpg?_nc_cat=104&_nc_sid=9267fe&_nc_ohc=ODbDTV99qzcAX-6Ga2V&_nc_ht=scontent.fyvr1-1.fna&oh=417487ec39cdf14b4b1bf2e32d5e891b&oe=5F8897AD",
+//     title: req.body.title,
+//     company: req.body.company,
+//     description: req.body.description,
+//     price: req.body.price,
+//     reviews: req.body.reviews,
+//   };
 
-  const newItemsArr = JSON.parse(listOfItems).concat(newItem);
-  fs.writeFileSync(
-    path.join(__dirname, "./database/itemList.json"),
-    JSON.stringify(newItemsArr)
-  );
-});
-
-// add new item with image using MULTER
-// app.post('/api/items')
+//   const newItemsArr = JSON.parse(listOfItems).concat(newItem);
+//   fs.writeFileSync(
+//     path.join(__dirname, "./database/itemList.json"),
+//     JSON.stringify(newItemsArr)
+//   );
+// });
 
 app.post("/payment", (req, res) => {
   const { product, token } = req.body;
