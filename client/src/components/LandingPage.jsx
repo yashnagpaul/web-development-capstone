@@ -18,7 +18,7 @@ function LandingPage() {
       </h1>
       <div className="landing-page__button-div">
         <Link to="/shop">
-          <button className="landing-page__button">SHOP MARKET</button>
+          <button className="landing-page__button">GO SHOPPING!</button>
         </Link>
         {/* <Link to="/admin">
           <button className="landing-page__button">ADMIN</button>
