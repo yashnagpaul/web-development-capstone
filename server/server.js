@@ -44,7 +44,10 @@ const upload = multer();
 app.post("/api/items", upload.single("file"), async function (req, res, next) {
   const {
     file,
-    body: { name, company, description, price }, // TODO: when creating newItem, solve this issue
+    body: { name, company, description, price },
+    // body: { company },
+    // body: { description },
+    // body: { price },
   } = req;
 
   // if (file.detectedFileExtention != ".jpg")
@@ -65,7 +68,7 @@ app.post("/api/items", upload.single("file"), async function (req, res, next) {
     title: name,
     company: company,
     description: description,
-    price: price,
+    price: parseInt(price),
     reviews: [],
   };
 

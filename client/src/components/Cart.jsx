@@ -25,7 +25,9 @@ class Cart extends React.Component {
 
   calculateTotal = () => {
     let orderTotal = 0;
-    this.state.cartItems.map((item) => (orderTotal = orderTotal + item.price));
+    this.state.cartItems.map(
+      (item) => (orderTotal = orderTotal + item.price * item.quantity)
+    );
     return orderTotal;
   };
   // product = cartItems;
@@ -54,9 +56,6 @@ class Cart extends React.Component {
     this.setState({ cartItems: newCartItems });
     // use the new array with the updated item and setState
   };
-
-  // the quantityUpdated function only seems to be working for the last item in the list
-  // also, whenever an item is deleted from the list the app seems to throw an error
 
   makePayment = (token) => {
     const body = {
@@ -113,7 +112,8 @@ class Cart extends React.Component {
                   //instead of fiddling with the param, change the logic of the function
                   className="cart__quantity"
                   type="number"
-                  placeholder="Quantity"
+                  placeholder="Qty: 1"
+                  min="1"
                 ></input>
                 <button
                   onClick={(e) => this.deleteHandler(e, item.id)}
@@ -129,7 +129,7 @@ class Cart extends React.Component {
         </section>
         <StripeCheckout
           onClick={this.clickPay}
-          stripeKey="pk_test_51HQSP2HjC2la8EuOg1AvcdcQowgS0Fgl3tiXoezVICVhhrdJpGApir7KYqSaKvS4kdJsIE1YdENEBLMVfK2iPIlZ005wP5Xfmf"
+          stripeKey="pk_test_51HQSP2HjC2la8EuOmD5dLR1accVfLPgtFl0oXNNtXxNIsDkVJbtQmEPabbcUI8atQ3LoqmJmSsX48BKdhl4Ng0cs00jIzoVfsp"
           token={() => {
             "";
           }}

@@ -56,13 +56,14 @@ class AdminPage extends React.Component {
     e.preventDefault();
     const data = new FormData();
     data.append("name", this.uploadForm.current.title.value);
-    data.append("name", this.uploadForm.current.company.value);
-    data.append("name", this.uploadForm.current.description.value);
-    data.append("name", this.uploadForm.current.price.value);
+    data.append("company", this.uploadForm.current.company.value);
+    data.append("description", this.uploadForm.current.description.value);
+    data.append("price", this.uploadForm.current.price.value);
     data.append("file", this.fileInput.current.files[0]);
     axios
       .post("http://localhost:5000/api/items", data)
       .then((res) => console.log(res))
+      .then(window.alert("New product added!"))
       .catch((err) => console.log(err));
   };
 

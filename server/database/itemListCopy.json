@@ -58,5 +58,50 @@
       { "name": "Alpha", "rating": "⭐⭐⭐⭐⭐", "comment": "Good product" },
       { "name": "Delta", "rating": "⭐⭐⭐⭐", "comment": "It's nice" }
     ]
+  },
+  {
+    "id": 5,
+    "image": "http://localhost:5000/uploads/Glass Straw.png",
+    "title": "Glass Straw",
+    "company": "Last Straw",
+    "description": "Last Straw is designed to be a replacement for the ordinary plastic straws with hopes to reduce the usage of plastic straws.",
+    "price": 3.99,
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "image": "http://localhost:5000/uploads/Scented candles.png",
+    "title": "Scented candles",
+    "company": "Escential",
+    "description": "Handmade candles with natural essential oils that illuminate your daily wellness.",
+    "price": 9,
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "image": "http://localhost:5000/uploads/Grow your own herb.png",
+    "title": "Grow your own herb",
+    "company": "Simply Sprouts",
+    "description": "Simply Sprouts by Blossom is a 'grow your own herb' kit that is both practical and environment friendly. Select from: Basil, Thyme, and Mint.",
+    "price": 14,
+    "reviews": []
+  },
+  {
+    "id": 8,
+    "image": "http://localhost:5000/uploads/Reusable food bags.png",
+    "title": "Reusable food bags",
+    "company": "Food Surrounder ",
+    "description": "Eco-friendly, reusable food wraps, snack pouches, and sandwich bags.",
+    "price": 3,
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "image": "http://localhost:5000/uploads/Bike signalling device.png",
+    "title": "Bike signalling device",
+    "company": "Klick",
+    "description": "Change the way drivers and cyclists communicate. Klick is a signalling device for cyclists.",
+    "price": 15,
+    "reviews": []
   }
 ]

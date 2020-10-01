@@ -99,7 +99,10 @@ class ItemPage extends React.Component {
           </form>
           <div>
             <br />
-            <h2>{this.state.item.reviews.length} Reviews</h2>
+            <h2>
+              {this.state.item.reviews.length}{" "}
+              {this.state.item.reviews.length === 1 ? "Review" : "Reviews"}
+            </h2>
             <br />
             <hr />
             <br />
