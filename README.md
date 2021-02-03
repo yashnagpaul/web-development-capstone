@@ -1,6 +1,6 @@
-## Watch the demo video:
+## Watch the demo:
 
-<a href='https://www.loom.com/share/aa84b00e336c409e83a83dab9bc10044'>Here<a>
+<a href='https://www.loom.com/share/aa84b00e336c409e83a83dab9bc10044'>Link to video<a>
 
 ## To run the app:
 
