@@ -1,9 +1,12 @@
 #DOTENV
 .env
-.DS_Store
 
 #SCSS
 .css.map
 
 #NODE MODULES
 node_modules
+
+# Miscellaneous
+.DS_Store
+.idea
