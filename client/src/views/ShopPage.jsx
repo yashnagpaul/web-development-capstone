@@ -1,8 +1,8 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
-import ItemCard from "./ItemCard";
-import SearchAndFilter from "./SearchAndFilter";
+import ItemCard from '../components/ItemCard';
+import SearchAndFilter from '../components/SearchAndFilter';
 
 class ShopPage extends React.Component {
   state = {
@@ -11,7 +11,7 @@ class ShopPage extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/items")
+      .get('http://localhost:5050/api/items')
       .then((response) => this.setState({ items: response.data }));
   }
 
@@ -29,7 +29,7 @@ class ShopPage extends React.Component {
         <div>
           <SearchAndFilter searchResult={this.searchResult} />
         </div>
-        <div className="shop">
+        <div className='shop'>
           {this.state.items.map((item) => (
             <ItemCard
               id={item.id}
@@ -44,7 +44,7 @@ class ShopPage extends React.Component {
         </div>
       </>
     ) : (
-      console.log("loading content")
+      console.log('loading content')
     );
   }
 }

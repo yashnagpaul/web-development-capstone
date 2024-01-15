@@ -1,5 +1,5 @@
-import React from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
 class SearchAndFilter extends React.Component {
   constructor(props) {
@@ -15,24 +15,24 @@ class SearchAndFilter extends React.Component {
     const query = this.searchField.current.value;
     query.length >= 1
       ? axios
-          .get("http://localhost:5000/api/items")
+          .get('http://localhost:5050/api/items')
           .then((response) =>
             response.data.filter((obj) => obj.title === query)
           )
           .then((result) =>
             result.length >= 1
               ? this.props.searchResult(result)
-              : console.log("response.length < 1 ")
+              : console.log('response.length < 1 ')
           )
       : axios
-          .get("http://localhost:5000/api/items")
+          .get('http://localhost:5050/api/items')
           .then((response) => this.props.searchResult(response.data));
   };
 
   sortHandler = (e) => {
-    if (e.target.value === "price-low-high") {
+    if (e.target.value === 'price-low-high') {
       axios
-        .get("http://localhost:5000/api/items")
+        .get('http://localhost:5050/api/items')
         .then((response) => {
           const sortedArr = response.data.sort(function (a, b) {
             return a.price - b.price;
@@ -41,9 +41,9 @@ class SearchAndFilter extends React.Component {
         })
         .then((result) => this.props.searchResult(result))
         .catch((err) => console.log(err));
-    } else if (e.target.value === "price-high-low") {
+    } else if (e.target.value === 'price-high-low') {
       axios
-        .get("http://localhost:5000/api/items")
+        .get('http://localhost:5050/api/items')
         .then((response) => {
           const sortedArr = response.data.sort(function (a, b) {
             return b.price - a.price;
@@ -52,9 +52,9 @@ class SearchAndFilter extends React.Component {
         })
         .then((result) => this.props.searchResult(result))
         .catch((err) => console.log(err));
-    } else if (e.target.value === "alphabetic-order") {
+    } else if (e.target.value === 'alphabetic-order') {
       axios
-        .get("http://localhost:5000/api/items")
+        .get('http://localhost:5050/api/items')
         .then((response) => {
           const sortedArr = response.data.sort(function (a, b) {
             return a.title - b.title;
@@ -68,32 +68,32 @@ class SearchAndFilter extends React.Component {
 
   render() {
     return (
-      <div className="search-and-filter">
+      <div className='search-and-filter'>
         <section>
-          <label htmlFor="search">
+          <label htmlFor='search'>
             <b>Search </b>
           </label>
           <input
             ref={this.searchField}
             onKeyDown={this.searchHandler}
-            name="search"
-            type="search"
-            placeholder="Product name"
+            name='search'
+            type='search'
+            placeholder='Product name'
           ></input>
         </section>
         <section>
-          <label htmlFor="sort">
+          <label htmlFor='sort'>
             <b>Sort </b>
           </label>
           <select
             // ref={this.select}
             onChange={(e) => this.sortHandler(e)}
-            name="sort"
+            name='sort'
           >
             <option>Select</option>
-            <option value="alphabetic-order">Alphabetic A-Z</option>
-            <option value="price-low-high">Price: Low to High</option>
-            <option value="price-high-low">Price: High to Low</option>
+            <option value='alphabetic-order'>Alphabetic A-Z</option>
+            <option value='price-low-high'>Price: Low to High</option>
+            <option value='price-high-low'>Price: High to Low</option>
           </select>
         </section>
       </div>

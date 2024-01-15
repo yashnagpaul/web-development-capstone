@@ -1,47 +1,46 @@
 //variables from dotenv
-require("dotenv").config();
-const {
-  SERVER_PORT,
-  ADMIN_USERNAME,
-  ADMIN_PASSWORD,
-  SECRET,
-  SECRET_KEY,
-} = process.env;
+require('dotenv').config();
+const { SERVER_PORT, ADMIN_USERNAME, ADMIN_PASSWORD, SECRET, SECRET_KEY } =
+  process.env;
 
 // import required node modules
-const fs = require("fs");
-const path = require("path");
-const cors = require("cors");
-const jwt = require("jsonwebtoken");
+const fs = require('fs');
+const path = require('path');
+const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 // TODO: add a stripe key
 // const stripe = require("stripe")(SECRET_KEY);
 
 // install and import express depedency
-const express = require("express");
+const express = require('express');
 const app = express();
 
 // MULTER
-const multer = require("multer");
+const multer = require('multer');
 
 // import and read required files
 const listOfItems = fs.readFileSync(
-  path.join(__dirname, "./database/itemList.json")
+  path.join(__dirname, './database/itemList.json')
 );
 
 // ========== * ========== * MIDDLEWARE * ========== * ==========
 
 app.use(express.json());
-app.use(cors());
-app.use(express.static("public"));
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+  })
+);
+app.use(express.static('public'));
 
 // ========== * ========== * ROUTES * ========== * ==========
 
-const { promisify } = require("util");
-const pipeline = promisify(require("stream").pipeline);
+const { promisify } = require('util');
+const pipeline = promisify(require('stream').pipeline);
 const upload = multer();
 
-app.post("/api/items", upload.single("file"), async function (req, res, next) {
+app.post('/api/items', upload.single('file'), async function (req, res, next) {
   const {
     file,
     body: { name, company, description, price },
@@ -74,46 +73,46 @@ app.post("/api/items", upload.single("file"), async function (req, res, next) {
 
   const newItemsArr = JSON.parse(listOfItems).concat(newItem);
   fs.writeFileSync(
-    path.join(__dirname, "./database/itemList.json"),
+    path.join(__dirname, './database/itemList.json'),
     JSON.stringify(newItemsArr)
   );
 
-  res.send("Item uploaded");
+  res.send('Item uploaded');
 });
 
 //
 
-app.patch("/api/items", (req, res) => {
+app.patch('/api/items', (req, res) => {
   let itemList = JSON.parse(listOfItems);
   let itemToEdit = itemList.find((item) => item.id == req.body.id);
   itemToEdit.reviews = req.body.comments;
   itemList.splice(itemToEdit.id, 1, itemToEdit);
   fs.writeFileSync(
-    path.join(__dirname, "./database/itemList.json"),
+    path.join(__dirname, './database/itemList.json'),
     JSON.stringify(itemList)
   );
   res.json(itemList[itemToEdit.id]);
 });
 
-app.delete("/api/items/:id", (req, res) => {
+app.delete('/api/items/:id', (req, res) => {
   let itemList = JSON.parse(listOfItems);
   const itemsAfterDeleting = itemList.filter(
     (item) => item.id != req.params.id
   );
   fs.writeFileSync(
-    path.join(__dirname, "./database/itemList.json"),
+    path.join(__dirname, './database/itemList.json'),
     JSON.stringify(itemsAfterDeleting)
   );
   res.json(`Deleted ${req.params.id}`);
 });
 
-app.get("/api", (req, res) => res.send("<h1>Try /api/items </h1>"));
+app.get('/api', (req, res) => res.send('<h1>Try /api/items </h1>'));
 
 // get all items
-app.get("/api/items", (req, res) => res.json(JSON.parse(listOfItems)));
+app.get('/api/items', (req, res) => res.json(JSON.parse(listOfItems)));
 
 // login
-app.post("/api/login", (req, res) => {
+app.post('/api/login', (req, res) => {
   console.log(req.body);
   if (
     req.body.username === ADMIN_USERNAME &&
@@ -123,16 +122,16 @@ app.post("/api/login", (req, res) => {
     const token = jwt.sign({ username: req.body.username }, SECRET);
     res.json({ status: 200, token });
   } else {
-    res.json("Hmmm...");
+    res.json('Hmmm...');
     console.log(ADMIN_USERNAME, ADMIN_PASSWORD);
     console.log(req.body);
   }
 });
 
-app.post("/payment", (req, res) => {
+app.post('/payment', (req, res) => {
   const { product, token } = req.body;
-  console.log("product", product);
-  console.log("price", product.price);
+  console.log('product', product);
+  console.log('price', product.price);
   const idempontencyKey = uuid();
 
   return stripe.customers
@@ -144,7 +143,7 @@ app.post("/payment", (req, res) => {
       stripe.charges.create(
         {
           amount: product.price * 100,
-          currency: "cad",
+          currency: 'cad',
           customer: customer.id,
           receipt_email: token.email,
           description: product.name,

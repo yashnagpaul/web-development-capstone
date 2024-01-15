@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 // import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from 'axios';
 
 class ItemPage extends React.Component {
   constructor(props) {
@@ -12,15 +12,15 @@ class ItemPage extends React.Component {
   }
 
   addToCartHandler = () => {
-    const existingCartItems = localStorage.getItem("cartItems");
+    const existingCartItems = localStorage.getItem('cartItems');
     let newCartItems = [];
     existingCartItems
       ? newCartItems.push(...JSON.parse(existingCartItems))
-      : console.log("no items in cart");
+      : console.log('no items in cart');
     newCartItems.push({ ...this.state.item, quantity: 1 });
-    localStorage.setItem("cartItems", JSON.stringify(newCartItems));
+    localStorage.setItem('cartItems', JSON.stringify(newCartItems));
     this.props.cartItemsUpdated(
-      JSON.parse(localStorage.getItem("cartItems")).length
+      JSON.parse(localStorage.getItem('cartItems')).length
     );
   };
 
@@ -35,7 +35,7 @@ class ItemPage extends React.Component {
     existingReviews.push(newReview);
 
     axios
-      .patch("http://localhost:5000/api/items", {
+      .patch('http://localhost:5050/api/items', {
         id: this.props.match.params.id,
         comments: existingReviews,
       })
@@ -44,7 +44,7 @@ class ItemPage extends React.Component {
 
   componentDidMount = () => {
     axios
-      .get(`http://localhost:5000/api/items`)
+      .get(`http://localhost:5050/api/items`)
       .then((response) =>
         response.data.filter((obj) => obj.id !== this.props.match.params.id)
       )
@@ -55,28 +55,37 @@ class ItemPage extends React.Component {
 
   render() {
     return this.state.item.reviews ? (
-      <div className="item-page">
-        <section className="item-page__item">
+      <div className='item-page'>
+        <section className='item-page__item'>
           <div>
-            <img src={this.state.item.image} alt="" />
+            <img
+              src={this.state.item.image}
+              alt=''
+            />
             <h2>{this.state.item.title}</h2>
             <h3>By: {this.state.item.company}</h3>
             <p>{this.state.item.description}</p>
             <h5>Price: C${this.state.item.price}</h5>
           </div>
-          <button onClick={this.addToCartHandler} type="button">
+          <button
+            onClick={this.addToCartHandler}
+            type='button'
+          >
             ADD TO CART
           </button>
         </section>
         <section>
-          <form ref={this.reviewForm} className="item-page__about-item">
+          <form
+            ref={this.reviewForm}
+            className='item-page__about-item'
+          >
             <h2>Write a review</h2>
             <input
-              name="reviewName"
-              type="text"
-              placeholder="Your name"
+              name='reviewName'
+              type='text'
+              placeholder='Your name'
             ></input>
-            <select name="rating">
+            <select name='rating'>
               <option>⭐⭐⭐⭐⭐</option>
               <option>⭐⭐⭐⭐</option>
               <option>⭐⭐⭐</option>
@@ -84,15 +93,15 @@ class ItemPage extends React.Component {
               <option>⭐</option>
             </select>
             <textarea
-              name="review"
-              id=""
-              cols="40"
-              rows="5"
-              placeholder="Write something..."
+              name='review'
+              id=''
+              cols='40'
+              rows='5'
+              placeholder='Write something...'
             ></textarea>
             <button
               onClick={this.commentHandler}
-              className="item-page__submit-review"
+              className='item-page__submit-review'
             >
               PUBLISH
             </button>
@@ -100,8 +109,8 @@ class ItemPage extends React.Component {
           <div>
             <br />
             <h2>
-              {this.state.item.reviews.length}{" "}
-              {this.state.item.reviews.length === 1 ? "Review" : "Reviews"}
+              {this.state.item.reviews.length}{' '}
+              {this.state.item.reviews.length === 1 ? 'Review' : 'Reviews'}
             </h2>
             <br />
             <hr />
@@ -117,7 +126,7 @@ class ItemPage extends React.Component {
                     <br />
                   </div>
                 ))
-              : ""}
+              : ''}
           </div>
         </section>
       </div>

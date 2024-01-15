@@ -1,26 +1,26 @@
-import React from "react";
-import Header from "./components/Header";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ShopPage from "./components/ShopPage";
-import ItemPage from "./components/ItemPage";
-import Cart from "./components/Cart";
-import AboutPage from "./components/AboutPage";
-import LandingPage from "./components/LandingPage";
-import Checkout from "./components/Checkout";
-import AdminPage from "./components/AdminPage";
+import React from 'react';
+import Header from './components/Header';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import ShopPage from './views/ShopPage';
+import ItemPage from './views/ItemPage';
+import Cart from './components/Cart';
+import AboutPage from './views/AboutPage';
+import LandingPage from './views/LandingPage';
+import Checkout from './components/Checkout';
+import AdminPage from './views/AdminPage';
 // import Footer from "./components/Footer";
 
 class App extends React.Component {
   state = {
     numberOfCartItems:
-      localStorage.getItem("cartItems") &&
-      JSON.parse(localStorage.getItem("cartItems")).length,
+      localStorage.getItem('cartItems') &&
+      JSON.parse(localStorage.getItem('cartItems')).length,
     isLoggedIn: false,
   };
 
   cartItemsUpdated = (newNumber) => {
     this.setState({
-      numberOfCartItems: JSON.parse(localStorage.getItem("cartItems")).length,
+      numberOfCartItems: JSON.parse(localStorage.getItem('cartItems')).length,
     });
   };
 
@@ -29,7 +29,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    localStorage.getItem("token") && this.setState({ isLoggedIn: true });
+    localStorage.getItem('token') && this.setState({ isLoggedIn: true });
   }
 
   render() {
@@ -41,11 +41,22 @@ class App extends React.Component {
           isLoggedIn={this.state.isLoggedIn}
         />
         <Switch>
-          <Route path="/" component={LandingPage} exact></Route>
-          <Route path="/about" component={AboutPage}></Route>
-          <Route path="/shop" component={ShopPage} exact></Route>
           <Route
-            path="/shop/:id"
+            path='/'
+            component={LandingPage}
+            exact
+          ></Route>
+          <Route
+            path='/about'
+            component={AboutPage}
+          ></Route>
+          <Route
+            path='/shop'
+            component={ShopPage}
+            exact
+          ></Route>
+          <Route
+            path='/shop/:id'
             render={(routeProps) => (
               <ItemPage
                 cartItemsUpdated={this.cartItemsUpdated}
@@ -54,14 +65,20 @@ class App extends React.Component {
             )}
           ></Route>
           <Route
-            path="/cart"
+            path='/cart'
             render={(routeProps) => (
-              <Cart cartItemsUpdated={this.cartItemsUpdated} {...routeProps} />
+              <Cart
+                cartItemsUpdated={this.cartItemsUpdated}
+                {...routeProps}
+              />
             )}
           ></Route>
-          <Route path="/checkout" component={Checkout}></Route>
           <Route
-            path="/admin"
+            path='/checkout'
+            component={Checkout}
+          ></Route>
+          <Route
+            path='/admin'
             render={(routeProps) => (
               <AdminPage
                 loggedInStatus={this.state.isLoggedIn}
