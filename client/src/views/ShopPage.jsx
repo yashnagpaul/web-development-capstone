@@ -4,6 +4,9 @@ import axios from 'axios';
 import ItemCard from '../components/ItemCard';
 import SearchAndFilter from '../components/SearchAndFilter';
 
+require('dotenv').config();
+const { REACT_APP_BACKEND_URL } = process.env;
+
 class ShopPage extends React.Component {
   state = {
     items: [],
@@ -11,7 +14,7 @@ class ShopPage extends React.Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:5050/api/items')
+      .get(`${REACT_APP_BACKEND_URL}/api/items`)
       .then((response) => this.setState({ items: response.data }));
   }
 

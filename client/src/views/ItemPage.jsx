@@ -2,6 +2,9 @@ import React from 'react';
 // import { Link } from "react-router-dom";
 import axios from 'axios';
 
+require('dotenv').config();
+const { REACT_APP_BACKEND_URL } = process.env;
+
 class ItemPage extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +38,7 @@ class ItemPage extends React.Component {
     existingReviews.push(newReview);
 
     axios
-      .patch('http://localhost:5050/api/items', {
+      .patch(`${REACT_APP_BACKEND_URL}/api/items`, {
         id: this.props.match.params.id,
         comments: existingReviews,
       })
@@ -44,7 +47,7 @@ class ItemPage extends React.Component {
 
   componentDidMount = () => {
     axios
-      .get(`http://localhost:5050/api/items`)
+      .get(`${REACT_APP_BACKEND_URL}/api/items`)
       .then((response) =>
         response.data.filter((obj) => obj.id !== this.props.match.params.id)
       )

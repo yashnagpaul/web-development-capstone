@@ -8,6 +8,7 @@ import AboutPage from './views/AboutPage';
 import LandingPage from './views/LandingPage';
 import Checkout from './components/Checkout';
 import AdminPage from './views/AdminPage';
+import StatsPage from './views/StatsPage';
 // import Footer from "./components/Footer";
 
 class App extends React.Component {
@@ -45,16 +46,17 @@ class App extends React.Component {
             path='/'
             component={LandingPage}
             exact
-          ></Route>
+          />
           <Route
             path='/about'
             component={AboutPage}
-          ></Route>
+          />
           <Route
             path='/shop'
             component={ShopPage}
             exact
-          ></Route>
+          />
+          /
           <Route
             path='/shop/:id'
             render={(routeProps) => (
@@ -63,7 +65,7 @@ class App extends React.Component {
                 {...routeProps}
               />
             )}
-          ></Route>
+          />
           <Route
             path='/cart'
             render={(routeProps) => (
@@ -72,11 +74,11 @@ class App extends React.Component {
                 {...routeProps}
               />
             )}
-          ></Route>
+          />
           <Route
             path='/checkout'
             component={Checkout}
-          ></Route>
+          />
           <Route
             path='/admin'
             render={(routeProps) => (
@@ -86,7 +88,17 @@ class App extends React.Component {
                 {...routeProps}
               />
             )}
-          ></Route>
+          />
+          <Route
+            path='/stats'
+            render={(routeProps) => (
+              <StatsPage
+                loggedInStatus={this.state.isLoggedIn}
+                logInUpdate={this.logInUpdate}
+                {...routeProps}
+              />
+            )}
+          />
         </Switch>
         {/* <Footer /> */}
       </BrowserRouter>

@@ -1,13 +1,13 @@
-import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
-import cartIcon from "../assets/icons/supermarket.svg";
+import cartIcon from '../assets/icons/supermarket.svg';
 
 class Header extends React.Component {
   state = { numberOfItems: 0, loggedIn: false };
 
   componentDidMount() {
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem('token')) {
       this.setState({ loggedIn: true });
     }
   }
@@ -22,36 +22,57 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className="header">
-        <Link to="/">
+      <div className='header'>
+        <Link to='/'>
           <h1>🍒 le marché</h1>
         </Link>
 
         <div>
           <button
             style={{
-              display: this.props.isLoggedIn ? "inline" : "none",
+              display: this.props.isLoggedIn ? 'inline' : 'none',
             }}
-            className="admin-page__logout-btn"
+            className='admin-page__logout-btn'
             onClick={() => {
-              localStorage.removeItem("token");
+              localStorage.removeItem('token');
               this.setState({ loggedIn: false });
               this.props.logInUpdate(this.state.loggedIn);
             }}
           >
             LOG OUT
           </button>
-          <NavLink to="/shop" className="header__link">
+          <NavLink
+            to='/shop'
+            className='header__link'
+          >
             Market
           </NavLink>
-          <NavLink to="/admin" className="header__link">
+          <NavLink
+            to='/admin'
+            className='header__link'
+          >
             Admin
           </NavLink>
-          <NavLink to="/about" className="header__link">
+          {this.props.isLoggedIn && (
+            <NavLink
+              to='/stats'
+              className='header__link'
+            >
+              Stats
+            </NavLink>
+          )}
+          <NavLink
+            to='/about'
+            className='header__link'
+          >
             About
           </NavLink>
-          <NavLink to="/cart">
-            <img src={cartIcon} alt="cart" className="header__cart"></img>
+          <NavLink to='/cart'>
+            <img
+              src={cartIcon}
+              alt='cart'
+              className='header__cart'
+            ></img>
             {this.props.numberOfCartItems}
           </NavLink>
         </div>
