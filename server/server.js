@@ -1,13 +1,21 @@
 //variables from dotenv
 require('dotenv').config();
-const { SERVER_PORT, ADMIN_USERNAME, ADMIN_PASSWORD, SECRET, SECRET_KEY } =
-  process.env;
+const {
+  SERVER_PORT,
+  ADMIN_USERNAME,
+  ADMIN_PASSWORD,
+  SECRET,
+  SECRET_KEY,
+  MIXPANEL_TOKEN,
+} = process.env;
 
 // import required node modules
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const Mixpanel = require('mixpanel');
+const mixpanel = Mixpanel.init(MIXPANEL_TOKEN);
 
 // TODO: add a stripe key
 // const stripe = require("stripe")(SECRET_KEY);
@@ -32,7 +40,8 @@ app.use(
     origin: 'http://localhost:3000',
   })
 );
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+app.use('*/uploads', express.static('public/images'));
 
 // ========== * ========== * ROUTES * ========== * ==========
 
@@ -120,7 +129,13 @@ app.post('/api/login', (req, res) => {
   ) {
     console.log(req.body);
     const token = jwt.sign({ username: req.body.username }, SECRET);
-    res.json({ status: 200, token });
+
+    mixpanel.track('Admin login', {
+      distinct_id: req.body.username,
+      user: req.body.username,
+    });
+
+    res.json({ status: 200, username: req.body.username, token });
   } else {
     res.json('Hmmm...');
     console.log(ADMIN_USERNAME, ADMIN_PASSWORD);

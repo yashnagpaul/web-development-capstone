@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+
 // import ImageUploader from "react-images-upload";
+require('dotenv').config();
+const { REACT_APP_BACKEND_URL } = process.env;
 
 class AdminPage extends React.Component {
   constructor(props) {
@@ -21,7 +24,7 @@ class AdminPage extends React.Component {
     e.preventDefault();
     const queryKeyword = this.deleteForm.current.deleteItemName.value;
     axios
-      .delete(`http://localhost:5050/api/items/${queryKeyword}`)
+      .delete(`${REACT_APP_BACKEND_URL}/api/items/${queryKeyword}`)
       .then((response) => console.log(response));
   };
 
@@ -29,7 +32,7 @@ class AdminPage extends React.Component {
     e.preventDefault();
 
     axios
-      .post('http://localhost:5050/api/login', {
+      .post(`${REACT_APP_BACKEND_URL}/api/login`, {
         username: this.loginForm.current.username.value,
         pass: this.loginForm.current.password.value,
       })
@@ -61,7 +64,7 @@ class AdminPage extends React.Component {
     data.append('price', this.uploadForm.current.price.value);
     data.append('file', this.fileInput.current.files[0]);
     axios
-      .post('http://localhost:5050/api/items', data)
+      .post(`${REACT_APP_BACKEND_URL}/api/items`, data)
       .then((res) => console.log(res))
       .then(window.alert('New product added!'))
       .catch((err) => console.log(err));
@@ -79,7 +82,7 @@ class AdminPage extends React.Component {
   //   };
 
   //   axios
-  //     .post("http://localhost:5050/api/items", newProduct)
+  //     .post(`${REACT_APP_BACKEND_URL}/api/items`, newProduct)
   //     .then(window.alert("New product has been added!"))
   //     .then(e.target.reset);
   // };

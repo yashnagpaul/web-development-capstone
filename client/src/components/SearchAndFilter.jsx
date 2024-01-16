@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 
+require('dotenv').config();
+const { REACT_APP_BACKEND_URL } = process.env;
+
 class SearchAndFilter extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +18,7 @@ class SearchAndFilter extends React.Component {
     const query = this.searchField.current.value;
     query.length >= 1
       ? axios
-          .get('http://localhost:5050/api/items')
+          .get(`${REACT_APP_BACKEND_URL}/api/items`)
           .then((response) =>
             response.data.filter((obj) => obj.title === query)
           )
@@ -25,14 +28,14 @@ class SearchAndFilter extends React.Component {
               : console.log('response.length < 1 ')
           )
       : axios
-          .get('http://localhost:5050/api/items')
+          .get('${REACT_APP_BACKEND_URL}/api/items')
           .then((response) => this.props.searchResult(response.data));
   };
 
   sortHandler = (e) => {
     if (e.target.value === 'price-low-high') {
       axios
-        .get('http://localhost:5050/api/items')
+        .get(`${REACT_APP_BACKEND_URL}/api/items`)
         .then((response) => {
           const sortedArr = response.data.sort(function (a, b) {
             return a.price - b.price;
@@ -43,7 +46,7 @@ class SearchAndFilter extends React.Component {
         .catch((err) => console.log(err));
     } else if (e.target.value === 'price-high-low') {
       axios
-        .get('http://localhost:5050/api/items')
+        .get(`${REACT_APP_BACKEND_URL}/api/items`)
         .then((response) => {
           const sortedArr = response.data.sort(function (a, b) {
             return b.price - a.price;
@@ -54,7 +57,7 @@ class SearchAndFilter extends React.Component {
         .catch((err) => console.log(err));
     } else if (e.target.value === 'alphabetic-order') {
       axios
-        .get('http://localhost:5050/api/items')
+        .get(`${REACT_APP_BACKEND_URL}/api/items`)
         .then((response) => {
           const sortedArr = response.data.sort(function (a, b) {
             return a.title - b.title;
